@@ -1,5 +1,5 @@
 /*
- * Created on 05-07-2019 13:02 by mkocemb
+ * Created on 05-07-2019 13:41 by mkocemb
  *
  * Copyright (c) 2001-2019 Unity S.A.
  * ul. Przedmiejska 6-10, 54-201 Wrocław, Poland
@@ -10,21 +10,10 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.user.model;
+package pl.unity.tutorial.marek.user.service.query;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class UserDto {
 
-
-@Entity
-@Table(name = "users_registered")
-public class User {
-
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 
 	private String name;

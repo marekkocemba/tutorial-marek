@@ -6,19 +6,19 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
 	<body>
-		<h3>Lista książek</h3>
+		<h3>Lista użytkowników</h3>
 		<c:choose>
-			 <c:when test = "${not empty bookList}">
-			 	<c:forEach items="${bookList}" var="book">
-                	<a href="/books/${book.id}"> ${book.title} || ${book.author} || ${book.bookCategory.small} ||  ${book.year} </a> <br>
+			 <c:when test = "${not empty userList}">
+			 	<c:forEach items="${userList}" var="user">
+                	<a href="/users/${user.id}"> ${user.name} || ${user.surname} || ${user.email} ||  ${user.telephone} </a> <br>
              	</c:forEach>
 			 </c:when>
 			 <c:otherwise>
-             Brak książek w bazie
+             Brak użytkowników w bazie
              </c:otherwise>
          </c:choose>
-         <form method="GET" action="/books/form">
-         	<input type="submit" value="dodaj książkę" >
+         <form method="GET" action="/users/form">
+         	<input type="submit" value="dodaj użytkownika" >
          </form>
     </body>
 </html>

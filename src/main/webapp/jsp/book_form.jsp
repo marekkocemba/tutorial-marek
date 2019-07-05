@@ -15,7 +15,7 @@
     	</style>
     </head>
     <body>
-        <h3>Dodaj książke</h3>
+        <h3>Dodaj/Edytuj książke</h3>
         	<form:form method="POST" action="/books" modelAttribute="book">
              <table>
                 <tr>
@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                 	<td><form:hidden path="id" /></td>
-                    <td><input type="submit" value="Submit"/></td>
+                    <td><input type="submit" value="OK"/></td>
                 </tr>
             </table>
         </form:form>

@@ -5,12 +5,12 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
     <body>
-        <h3>Książka dodana/zmodyfikowana/usunieta</h3>
-        <form method="GET" action="/books/form">
-                <input type="submit" value="dodaj ksiązkę" >
+        <h3>Użytkownik dodany/zmodyfikowany/usuniety</h3>
+        <form method="GET" action="/users/form">
+                <input type="submit" value="dodaj użytkownika" >
         </form>
-        <form method="GET" action="/books">
-                <input type="submit" value="pokaż listę książek" >
+        <form method="GET" action="/users">
+                <input type="submit" value="pokaż listę użytkowników" >
         </form>
     </body>
 </html>
