@@ -35,7 +35,9 @@ public class BookEditService {
 	}
 
 	public BookDto saveOrUpdateBook(BookForm bookForm) {
-
+		if(bookForm.getAvailable() == null){
+			bookForm.setAvailable(true);
+		}
 		Book persistedBook = bookEditRepository.saveOrUpdateBook(toBook(bookForm));
 		return toBookDto(persistedBook);
 	}

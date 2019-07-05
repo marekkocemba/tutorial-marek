@@ -5,7 +5,7 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
     <body>
-        <h3>Użytkownik dodany/zmodyfikowany/usuniety</h3>
+        <h3>Użytkownik dodany/zmodyfikowany</h3>
         <form method="GET" action="/users/form">
                 <input type="submit" value="dodaj użytkownika" >
         </form>

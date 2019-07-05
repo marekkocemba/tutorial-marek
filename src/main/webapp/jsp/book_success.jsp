@@ -5,7 +5,7 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
     <body>
-        <h3>Książka dodana/zmodyfikowana/usunieta</h3>
+        <h3>Książka dodana/zmodyfikowana</h3>
         <form method="GET" action="/books/form">
                 <input type="submit" value="dodaj ksiązkę" >
         </form>

@@ -49,18 +49,21 @@ public class InitialData {
 		book1.setAuthor("Marcel Proust");
 		book1.setBookCategory(BookCategoryEnum.OPOWIADANIE);
 		book1.setYear(1927);
+		book1.setAvailable(true);
 
 		Book book2 = new Book();
 		book2.setTitle("Poradnik domowy");
 		book2.setAuthor("Prusziński");
 		book2.setBookCategory(BookCategoryEnum.PORADNIK);
 		book2.setYear(1995);
+		book2.setAvailable(true);
 
 		Book book3 = new Book();
 		book3.setTitle("Bomba megabitowa");
 		book3.setAuthor("Stanisław Lem");
 		book3.setBookCategory(BookCategoryEnum.OPOWIADANIE);
 		book3.setYear(1999);
+		book3.setAvailable(true);
 
 		bookEditRepository.saveOrUpdateBook(book1);
 		bookEditRepository.saveOrUpdateBook(book2);

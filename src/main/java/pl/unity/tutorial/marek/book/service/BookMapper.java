@@ -27,6 +27,7 @@ public class BookMapper {
 		book.setAuthor(bookDto.getAuthor());
 		book.setBookCategory(bookDto.getBookCategory());
 		book.setYear(bookDto.getYear());
+		book.setAvailable(bookDto.getAvailable());
 		return book;
 	}
 	public static Book toBook(BookForm bookform) {
@@ -37,6 +38,7 @@ public class BookMapper {
 		book.setAuthor(bookform.getAuthor());
 		book.setBookCategory(bookform.getBookCategory());
 		book.setYear(bookform.getYear());
+		book.setAvailable(bookform.getAvailable());
 		return book;
 	}
 	public static BookDto toBookDto(Book book) {
@@ -47,6 +49,7 @@ public class BookMapper {
 		bookDto.setAuthor(book.getAuthor());
 		bookDto.setBookCategory(book.getBookCategory());
 		bookDto.setYear(book.getYear());
+		bookDto.setAvailable(book.getAvailable());
 		return bookDto;
 	}
 }

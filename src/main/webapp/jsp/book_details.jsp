@@ -31,5 +31,15 @@
             <form method="GET" action="/books/delete/${book.id}">
             	<input type="submit" value="usuń ksiązkę" >
             </form>
+            <c:choose>
+            	<c:when test = "${book.available == true}">
+            		<form method="POST" action="/reservation/book/${book.id}/user/random">
+                    	<input type="submit" value="wypożycz ksiązkę" >
+                    </form>
+            	</c:when>
+                <c:otherwise>
+                	<input type="submit" disabled="disabled" value="ksiązka niedostępna" >
+                </c:otherwise>
+            </c:choose>
     </body>
 </html>
