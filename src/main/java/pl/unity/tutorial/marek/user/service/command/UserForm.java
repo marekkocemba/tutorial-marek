@@ -12,16 +12,27 @@
 
 package pl.unity.tutorial.marek.user.service.command;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+
+
 public class UserForm {
 
 	private Long id;
 
+	@NotNull
+	@Size(min = 2, max = 30)
 	private String name;
 
+	@NotNull
+	@Size(min = 2, max = 30)
 	private String surname;
 
 	private String telephone;
 
+	@Email
 	private String email;
 
 	public Long getId() {
