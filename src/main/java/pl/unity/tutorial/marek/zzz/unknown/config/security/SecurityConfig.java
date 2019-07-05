@@ -10,7 +10,7 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.unknown.config.security;
+package pl.unity.tutorial.marek.zzz.unknown.config.security;
 
 //@Configuration
 //@EnableWebSecurity

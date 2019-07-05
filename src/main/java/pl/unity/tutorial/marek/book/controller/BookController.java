@@ -10,7 +10,7 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.book.interfaces.web;
+package pl.unity.tutorial.marek.book.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,25 +19,32 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.unity.tutorial.marek.book.application.query.BookSingleService;
+import pl.unity.tutorial.marek.book.service.query.BookService;
 
 
 @Controller
 @RequestMapping("/books")
-public class BookSingleController {
+public class BookController {
 
-	private final BookSingleService bookSingleService;
+	private final BookService bookService;
 
 	@Autowired
-	private BookSingleController(BookSingleService bookSingleService) {
+	private BookController(BookService bookService) {
 
-		this.bookSingleService = bookSingleService;
+		this.bookService = bookService;
 	}
 
 	@GetMapping("/{id}")
 	private String getBookById(@PathVariable("id") Long id, Model model) {
 
-		model.addAttribute("book", bookSingleService.getBookById(id));
+		model.addAttribute("book", bookService.getBookById(id));
 		return "book_details";
+	}
+
+	@GetMapping
+	private String getBookList(Model model) {
+
+		model.addAttribute("bookList", bookService.getBookList());
+		return "book_list";
 	}
 }

@@ -10,26 +10,26 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.unknown.config.initial.data;
+package pl.unity.tutorial.marek.zzz.unknown.config.initial.data;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
-import pl.unity.tutorial.marek.unknown.BookCategoryEnum;
-import pl.unity.tutorial.marek.book.domain.Book;
-import pl.unity.tutorial.marek.book.infrastructure.hibernate.BookRepository;
+import pl.unity.tutorial.marek.book.model.Book;
+import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
+import pl.unity.tutorial.marek.book.repository.BookEditRepository;
 
 
 @Configuration
 public class InitialData {
 
-	private final BookRepository bookRepository;
+	private final BookEditRepository bookEditRepository;
 
 	@Autowired
-	public InitialData(BookRepository bookRepository){
-		this.bookRepository = bookRepository;
+	public InitialData(BookEditRepository bookEditRepository){
+		this.bookEditRepository = bookEditRepository;
 	}
 
 	@PostConstruct
@@ -52,8 +52,8 @@ public class InitialData {
 		book3.setBookCategory(BookCategoryEnum.OPOWIADANIE);
 		book3.setYear(1999);
 
-		bookRepository.addBook(book1);
-		bookRepository.addBook(book2);
-		bookRepository.addBook(book3);
+		bookEditRepository.saveOrUpdateBook(book1);
+		bookEditRepository.saveOrUpdateBook(book2);
+		bookEditRepository.saveOrUpdateBook(book3);
 	}
 }

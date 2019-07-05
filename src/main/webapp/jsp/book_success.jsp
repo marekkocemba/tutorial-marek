@@ -5,9 +5,9 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
     <body>
-        <h3>Książka dodana</h3>
+        <h3>Książka dodana/zmodyfikowana/usunieta</h3>
         <form method="GET" action="/books/new-form">
-                <input type="submit" value="dodaj nastepną ksiązkę" >
+                <input type="submit" value="dodaj ksiązkę" >
         </form>
         <form method="GET" action="/books">
                 <input type="submit" value="pokaż listę książek" >

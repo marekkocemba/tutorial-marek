@@ -1,5 +1,5 @@
 /*
- * Created on 03-07-2019 14:18 by mkocemb
+ * Created on 03-07-2019 15:48 by mkocemb
  *
  * Copyright (c) 2001-2019 Unity S.A.
  * ul. Przedmiejska 6-10, 54-201 Wrocław, Poland
@@ -10,27 +10,34 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.book.application.command;
+package pl.unity.tutorial.marek.book.model;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import pl.unity.tutorial.marek.unknown.BookCategoryEnum;
+import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
 
 
-public class BookForm {
+@Entity
+@Table(name = "books")
+public class Book {
 
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 
-	@NotNull
-	@Size(min = 2, max = 30)
 	private String title;
 
-	@NotNull
-	@Size(min = 2, max = 30)
 	private String author;
 
-	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(name = "book_category")
 	private BookCategoryEnum bookCategory;
 
 	private Integer year;

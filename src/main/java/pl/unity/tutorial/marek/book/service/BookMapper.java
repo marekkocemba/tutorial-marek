@@ -10,11 +10,11 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.unknown;
+package pl.unity.tutorial.marek.book.service;
 
-import pl.unity.tutorial.marek.book.application.command.BookForm;
-import pl.unity.tutorial.marek.book.application.query.BookDto;
-import pl.unity.tutorial.marek.book.domain.Book;
+import pl.unity.tutorial.marek.book.service.command.BookForm;
+import pl.unity.tutorial.marek.book.service.query.BookDto;
+import pl.unity.tutorial.marek.book.model.Book;
 
 
 public class BookMapper {

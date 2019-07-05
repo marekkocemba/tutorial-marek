@@ -10,7 +10,7 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.book.infrastructure.hibernate;
+package pl.unity.tutorial.marek.book.repository;
 
 import java.util.List;
 
@@ -21,14 +21,13 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import pl.unity.tutorial.marek.book.domain.Book;
+import pl.unity.tutorial.marek.book.model.Book;
 
 
 @Repository
 public class BookRepository {
 
 	private final SessionFactory sessionFactory;
-
 
 	//TODO: przez konstruktor
 	@Autowired
@@ -38,6 +37,7 @@ public class BookRepository {
 	}
 
 	public Book getBookById(Long id) {
+
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(Book.class)
 			.add(Restrictions.eq("id", id));
@@ -45,25 +45,13 @@ public class BookRepository {
 		session.close();
 		return book;
 	}
-	public List<Book> getBookList() {
-		return getObjectList(Book.class);
 
-	}
-	public List<Book> getObjectList(Class<Book> bookClass) {
+	public List<Book> getBookList() {
 
 		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(bookClass);
+		Criteria criteria = session.createCriteria(Book.class);
 		List<Book> bookList = criteria.list();
 		session.close();
 		return bookList;
-	}
-
-	public Book addBook(Book book) {
-
-		Session session = sessionFactory.openSession();
-		session.save(book);
-		session.close();
-		return book;
-
 	}
 }

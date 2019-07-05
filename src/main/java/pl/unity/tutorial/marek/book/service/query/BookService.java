@@ -10,30 +10,43 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.book.application.query;
+package pl.unity.tutorial.marek.book.service.query;
 
-import static pl.unity.tutorial.marek.unknown.BookMapper.toBookDto;
+import static pl.unity.tutorial.marek.book.service.BookMapper.toBookDto;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import pl.unity.tutorial.marek.book.domain.Book;
-import pl.unity.tutorial.marek.book.infrastructure.hibernate.BookRepository;
+import pl.unity.tutorial.marek.book.model.Book;
+import pl.unity.tutorial.marek.book.repository.BookRepository;
+import pl.unity.tutorial.marek.book.service.BookMapper;
 
 
 @Service
-public class BookSingleService {
+public class BookService {
 
 	private final BookRepository bookRepository;
 
 	@Autowired
-	public BookSingleService(BookRepository bookRepository) {
+	public BookService(BookRepository bookRepository) {
 
 		this.bookRepository = bookRepository;
 	}
 
 	public BookDto getBookById(Long id) {
+
 		Book book = bookRepository.getBookById(id);
 		return toBookDto(book);
+	}
+
+	public List<BookDto> getBookList() {
+
+		return bookRepository.getBookList()
+			.stream()
+			.map(BookMapper::toBookDto)
+			.collect(Collectors.toList());
 	}
 }

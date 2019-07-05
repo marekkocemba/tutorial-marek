@@ -10,7 +10,7 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.unknown;
+package pl.unity.tutorial.marek.book.model.enums;
 
 public enum BookCategoryEnum {
 	PROZA("proza"), DRAMAT("dramat"), OPOWIADANIE("opowiadanie"), PORADNIK("poradnik");

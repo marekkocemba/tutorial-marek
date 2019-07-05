@@ -28,7 +28,7 @@
             <form method="GET" action="/books/form/${book.id}">
             	<input type="submit" value="edytuj książkę" >
             </form>
-            <form method="DELETE" action="/books">
+            <form method="GET" action="/books/delete/${book.id}">
             	<input type="submit" value="usuń ksiązkę" >
             </form>
     </body>

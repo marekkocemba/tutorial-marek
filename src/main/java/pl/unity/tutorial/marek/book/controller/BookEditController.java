@@ -10,7 +10,7 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.book.interfaces.web;
+package pl.unity.tutorial.marek.book.controller;
 
 import javax.validation.Valid;
 
@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.unity.tutorial.marek.book.application.command.BookEditService;
-import pl.unity.tutorial.marek.book.application.command.BookForm;
-import pl.unity.tutorial.marek.book.application.query.BookDto;
-import pl.unity.tutorial.marek.book.application.query.BookSingleService;
+import pl.unity.tutorial.marek.book.service.command.BookEditService;
+import pl.unity.tutorial.marek.book.service.command.BookForm;
+import pl.unity.tutorial.marek.book.service.query.BookDto;
+import pl.unity.tutorial.marek.book.service.query.BookService;
 
 
 @Controller
@@ -35,20 +35,27 @@ import pl.unity.tutorial.marek.book.application.query.BookSingleService;
 class BookEditController {
 
 	private final BookEditService bookEditService;
-	private final BookSingleService bookSingleService;
+	private final BookService bookService;
 
 	@Autowired
-	private BookEditController(BookEditService bookEditService, BookSingleService bookSingleService) {
+	private BookEditController(BookEditService bookEditService, BookService bookService) {
 
 		this.bookEditService = bookEditService;
-		this.bookSingleService = bookSingleService;
+		this.bookService = bookService;
+	}
+
+	@GetMapping("/{id}/form")
+	private String getEditBookForm(@PathVariable("id") Long id, Model model) {
+
+		model.addAttribute("book", bookService.getBookById(id));
+		return "book_form_edit";
 	}
 
 	@GetMapping("/form/{id}")
-	private String getNewOrEditBookForm(@PathVariable(required = false, name = "id") Long id, Model model) {
+	private String getBookForm(@PathVariable(required = false, name = "id") Long id, Model model) {
 
 		if (id != null) {
-			model.addAttribute("book", bookSingleService.getBookById(id));
+			model.addAttribute("book", bookService.getBookById(id));
 		}
 		else {
 			model.addAttribute("book", new BookDto());
@@ -57,12 +64,21 @@ class BookEditController {
 	}
 
 	@PostMapping
-	private String addOrEditBook(@Valid @ModelAttribute("book") BookForm bookForm, BindingResult result, Model model) {
+	private String addBook(@Valid @ModelAttribute("book") BookForm bookForm, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
 			return "book_form";
 		}
-		bookEditService.addBook(bookForm);
-		return "book_new_success";
+		bookEditService.saveOrUpdateBook(bookForm);
+		return "book_success";
+	}
+
+	//obejscie bo nie jest obsługiwana metoda DELETE powinno byc @DeleteMapping("/{id}")
+	@GetMapping("/delete/{id}")
+	private String deleteBook(@PathVariable("id") Long id) {
+
+		System.out.println("deledede");
+		bookEditService.deleteBook(id);
+		return "book_success";
 	}
 }

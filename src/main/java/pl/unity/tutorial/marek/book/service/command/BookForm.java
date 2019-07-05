@@ -10,19 +10,27 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.book.application.query;
+package pl.unity.tutorial.marek.book.service.command;
 
-import pl.unity.tutorial.marek.unknown.BookCategoryEnum;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
 
 
-public class BookDto {
+public class BookForm {
 
 	private Long id;
 
+	@NotNull
+	@Size(min = 2, max = 30)
 	private String title;
 
+	@NotNull
+	@Size(min = 2, max = 30)
 	private String author;
 
+	@NotNull
 	private BookCategoryEnum bookCategory;
 
 	private Integer year;
