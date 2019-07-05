@@ -10,10 +10,11 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.mapper;
+package pl.unity.tutorial.marek.unknown;
 
-import pl.unity.tutorial.marek.dto.BookDto;
-import pl.unity.tutorial.marek.model.Book;
+import pl.unity.tutorial.marek.book.application.command.BookForm;
+import pl.unity.tutorial.marek.book.application.query.BookDto;
+import pl.unity.tutorial.marek.book.domain.Book;
 
 
 public class BookMapper {
@@ -28,7 +29,16 @@ public class BookMapper {
 		book.setYear(bookDto.getYear());
 		return book;
 	}
+	public static Book toBook(BookForm bookform) {
 
+		Book book = new Book();
+		book.setId(bookform.getId());
+		book.setTitle(bookform.getTitle());
+		book.setAuthor(bookform.getAuthor());
+		book.setBookCategory(bookform.getBookCategory());
+		book.setYear(bookform.getYear());
+		return book;
+	}
 	public static BookDto toBookDto(Book book) {
 
 		BookDto bookDto = new BookDto();

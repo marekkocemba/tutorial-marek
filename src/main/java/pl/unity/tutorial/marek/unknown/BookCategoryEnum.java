@@ -10,8 +10,19 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.enums;
+package pl.unity.tutorial.marek.unknown;
 
 public enum BookCategoryEnum {
-	SAMPLE_CAT
+	PROZA("proza"), DRAMAT("dramat"), OPOWIADANIE("opowiadanie"), PORADNIK("poradnik");
+
+	private String small;
+
+	BookCategoryEnum(String small) {
+
+		this.small = small;
+	}
+
+	public String getSmall(){
+		return this.small;
+	}
 }

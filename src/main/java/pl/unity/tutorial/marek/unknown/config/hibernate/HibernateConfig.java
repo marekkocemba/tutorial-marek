@@ -10,7 +10,7 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.config.hibernate;
+package pl.unity.tutorial.marek.unknown.config.hibernate;
 
 import javax.persistence.EntityManagerFactory;
 

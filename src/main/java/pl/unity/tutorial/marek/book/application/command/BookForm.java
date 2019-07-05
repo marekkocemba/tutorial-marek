@@ -10,15 +10,15 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.dto;
+package pl.unity.tutorial.marek.book.application.command;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import pl.unity.tutorial.marek.enums.BookCategoryEnum;
+import pl.unity.tutorial.marek.unknown.BookCategoryEnum;
 
 
-public class BookDto {
+public class BookForm {
 
 	private Long id;
 

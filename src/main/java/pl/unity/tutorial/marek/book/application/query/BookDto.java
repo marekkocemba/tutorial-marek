@@ -1,5 +1,5 @@
 /*
- * Created on 03-07-2019 15:48 by mkocemb
+ * Created on 03-07-2019 14:18 by mkocemb
  *
  * Copyright (c) 2001-2019 Unity S.A.
  * ul. Przedmiejska 6-10, 54-201 Wrocław, Poland
@@ -10,34 +10,19 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.model;
+package pl.unity.tutorial.marek.book.application.query;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-import pl.unity.tutorial.marek.enums.BookCategoryEnum;
+import pl.unity.tutorial.marek.unknown.BookCategoryEnum;
 
 
-@Entity
-@Table(name = "books")
-public class Book {
+public class BookDto {
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 
 	private String title;
 
 	private String author;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "book_category")
 	private BookCategoryEnum bookCategory;
 
 	private Integer year;
