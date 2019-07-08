@@ -12,8 +12,6 @@
 
 package pl.unity.tutorial.marek.book.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,11 +19,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
-import pl.unity.tutorial.marek.reservation.model.Reservation;
 
 
 @Entity
@@ -106,15 +102,5 @@ public class Book {
 	public void setAvailable(Boolean available) {
 
 		this.available = available;
-	}
-
-	public List<Reservation> getReservationList() {
-
-		return reservationList;
-	}
-
-	public void setReservationList(List<Reservation> reservationList) {
-
-		this.reservationList = reservationList;
 	}
 }
