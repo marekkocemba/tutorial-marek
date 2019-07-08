@@ -16,7 +16,6 @@ import static pl.unity.tutorial.marek.book.service.BookMapper.toBook;
 import static pl.unity.tutorial.marek.reservation.service.ReservationMapper.toReservationDto;
 
 import java.time.ZonedDateTime;
-import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,8 +58,6 @@ public class ReservationEditService {
 	}
 
 	public ReservationDto addReservationByBookAndRandomUser(BookDto bookDto) {
-
-		Random randomGenerator = new Random();
 
 		User randomUser = userService.getUserRandom();
 		Book book = bookRepository.getBookById(bookDto.getId());
