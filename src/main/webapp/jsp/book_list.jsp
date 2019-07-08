@@ -1,12 +1,44 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+		    	<style>
+            		.error {
+            		color: #ff0000;
+            		font-style: italic;
+            		font-weight: bold;
+            		}
+            	</style>
 	</head>
 	<body>
 		<a href="/index.html"> Powrót do index-u </a> <br>
+		Wyszukiwarka:
+		<form:form method="GET" action="/books" modelAttribute="book">
+			Tytuł: <form:input path="title"/>
+			<br>
+			Autor: <form:input path="author"/>
+			<br>
+			<form:errors path="yearFrom" class='error'/>
+			Rok od: <form:input path="yearFrom"/>
+        	<br>
+        	<form:errors path="yearTo" class='error'/>
+        	Rok do: <form:input path="yearTo"/>
+        	<br>
+        	Kategoria:
+            <form:select  path="bookCategoryList">
+            	<c:forEach items="<%=BookCategoryEnum.values()%>" var="bookCategoryItem">
+            		<option value="${bookCategoryItem}">${bookCategoryItem.small}</option>
+            	</c:forEach>
+            </form:select>
+            <br>
+			Dostepne:  <form:checkbox path="available"/>
+        	<br>
+        	<input type= "submit" value= "filtruj" >
+		</form:form>
 		<h3>Lista książek</h3>
 		<c:choose>
 			 <c:when test = "${not empty bookList}">

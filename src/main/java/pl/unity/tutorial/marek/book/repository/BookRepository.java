@@ -17,11 +17,13 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pl.unity.tutorial.marek.book.model.Book;
+import pl.unity.tutorial.marek.book.service.query.BookQueryDto;
 
 
 @Repository
@@ -46,10 +48,28 @@ public class BookRepository {
 		return book;
 	}
 
-	public List<Book> getBookList() {
+	public List<Book> getBookList(BookQueryDto bookQueryDto) {
 
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(Book.class);
+		if(bookQueryDto.getTitle() != null && !bookQueryDto.getTitle().isBlank()){
+			criteria.add(Restrictions.like("title", bookQueryDto.getTitle(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		if(bookQueryDto.getAuthor() != null && !bookQueryDto.getAuthor().isBlank()){
+			criteria.add(Restrictions.like("author", bookQueryDto.getAuthor(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		if(bookQueryDto.getYearFrom() != null){
+			criteria.add(Restrictions.ge("year", bookQueryDto.getYearFrom()));
+		}
+		if(bookQueryDto.getYearTo() != null){
+			criteria.add(Restrictions.le("year", bookQueryDto.getYearTo()));
+		}
+		if(bookQueryDto.getBookCategoryList() != null && !bookQueryDto.getBookCategoryList().isEmpty()){
+			criteria.add(Restrictions.in("bookCategory", bookQueryDto.getBookCategoryList()));
+		}
+		if(Boolean.TRUE.equals(bookQueryDto.getAvailable())){
+			criteria.add(Restrictions.eq("available", bookQueryDto.getAvailable()));
+		}
 		List<Book> bookList = criteria.list();
 		session.close();
 		return bookList;
