@@ -24,7 +24,7 @@ import pl.unity.tutorial.marek.user.service.query.UserService;
 
 @Controller
 @RequestMapping("/users")
-public class UserController {
+class UserController {
 
 	private final UserService userService;
 

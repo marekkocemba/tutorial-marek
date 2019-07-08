@@ -15,6 +15,7 @@ package pl.unity.tutorial.marek.user.service.query;
 import static pl.unity.tutorial.marek.user.service.UserMapper.toUserDto;
 
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,11 @@ public class UserService {
 			.stream()
 			.map(UserMapper::toUserDto)
 			.collect(Collectors.toList());
+	}
+
+	public User getUserRandom() {
+		Random randomGenerator = new Random();
+		List<User> userList = userRepository.getUserList();
+		return userList.get(randomGenerator.nextInt(userList.size()));
 	}
 }

@@ -33,12 +33,16 @@
             </form>
             <c:choose>
             	<c:when test = "${book.available == true}">
-            		<form method="POST" action="/reservation/book/${book.id}/user/random">
+            		<form method="POST" action="/reservations/user/random">
+            			<input type="hidden" name="id" value="${book.id}">
                     	<input type="submit" value="wypożycz ksiązkę" >
                     </form>
             	</c:when>
                 <c:otherwise>
-                	<input type="submit" disabled="disabled" value="ksiązka niedostępna" >
+                	<form method="POST" action="/reservations/return">
+                	    <input type="hidden" name="id" value="${book.id}">
+                        <input type="submit" value="oddaj ksiązkę" >
+                    </form>
                 </c:otherwise>
             </c:choose>
     </body>

@@ -12,6 +12,59 @@
 
 package pl.unity.tutorial.marek.reservation.service.query;
 
+import java.time.ZonedDateTime;
+
+import pl.unity.tutorial.marek.book.service.query.BookDto;
+import pl.unity.tutorial.marek.user.service.query.UserDto;
+
+
 public class ReservationDto {
 
+	private Long id;
+
+	private ZonedDateTime dateReservation;
+
+	private UserDto user;
+
+	private BookDto book;
+
+	public Long getId() {
+
+		return id;
+	}
+
+	public void setId(Long id) {
+
+		this.id = id;
+	}
+
+	public ZonedDateTime getDateReservation() {
+
+		return dateReservation;
+	}
+
+	public void setDateReservation(ZonedDateTime dateReservation) {
+
+		this.dateReservation = dateReservation;
+	}
+
+	public UserDto getUser() {
+
+		return user;
+	}
+
+	public void setUser(UserDto user) {
+
+		this.user = user;
+	}
+
+	public BookDto getBook() {
+
+		return book;
+	}
+
+	public void setBook(BookDto book) {
+
+		this.book = book;
+	}
 }

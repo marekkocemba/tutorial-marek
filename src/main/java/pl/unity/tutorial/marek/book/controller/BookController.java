@@ -24,7 +24,7 @@ import pl.unity.tutorial.marek.book.service.query.BookService;
 
 @Controller
 @RequestMapping("/books")
-public class BookController {
+class BookController {
 
 	private final BookService bookService;
 

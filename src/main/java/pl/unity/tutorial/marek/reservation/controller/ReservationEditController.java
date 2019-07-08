@@ -12,12 +12,15 @@
 
 package pl.unity.tutorial.marek.reservation.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import pl.unity.tutorial.marek.book.service.query.BookDto;
+import pl.unity.tutorial.marek.reservation.service.command.ReservationEditService;
 import pl.unity.tutorial.marek.reservation.service.query.ReservationDto;
 
 
@@ -25,10 +28,35 @@ import pl.unity.tutorial.marek.reservation.service.query.ReservationDto;
 @RequestMapping("/reservations")
 public class ReservationEditController {
 
-	@PostMapping("/user/random")
-	private String addReservationByBookIdAndRandomUser(@ModelAttribute ReservationDto reservationDto, Model model) {
+	private final ReservationEditService reservationEditService;
 
-	//	bookEditService.saveOrUpdateBook(bookForm);
-		return "reservation_success";
+	@Autowired
+	private ReservationEditController(ReservationEditService reservationEditService) {
+
+		this.reservationEditService = reservationEditService;
+	}
+
+	@PostMapping("/user/random")
+	private String addReservationByBookAndRandomUser(@ModelAttribute BookDto bookDto, Model model) {
+		try {
+			ReservationDto reservationDto = reservationEditService.addReservationByBookAndRandomUser(bookDto);
+			model.addAttribute("reservation", reservationDto);
+			return "reservation_success";
+		}
+		catch (Exception e){
+			return "reservation_fail";
+		}
+	}
+
+	@PostMapping("/return")
+	private String deleteReservationByBook(@ModelAttribute BookDto bookDto, Model model) {
+		try {
+			reservationEditService.deleteReservationByBook(bookDto);
+			return "reservation_success";
+		}
+		catch (Exception e){
+			e.printStackTrace();
+			return "reservation_fail";
+		}
 	}
 }
