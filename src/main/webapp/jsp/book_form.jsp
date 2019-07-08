@@ -15,6 +15,7 @@
     	</style>
     </head>
     <body>
+    	<a href="/index.html"> Powrót do index-u </a> <br>
         <h3>Dodaj/Edytuj książke</h3>
         	<form:form method="POST" action="/books" modelAttribute="book">
              <table>

@@ -5,6 +5,7 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
     <body>
+    	<a href="/index.html"> Powrót do index-u </a> <br>
         <h3>Użytkownik dodany/zmodyfikowany</h3>
         <form method="GET" action="/users/form">
                 <input type="submit" value="dodaj użytkownika" >

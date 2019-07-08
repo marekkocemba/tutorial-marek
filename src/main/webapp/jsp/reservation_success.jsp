@@ -6,6 +6,7 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
     <body>
+    	<a href="/index.html"> Powrót do index-u </a> <br>
     	<c:choose>
         	<c:when test = "${not empty reservation}">
         		<h3>Książka wypożyczona użytkownikowi: "${reservation.user.name} ${reservation.user.surname}"</h3>

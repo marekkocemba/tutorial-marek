@@ -5,6 +5,7 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
     <body>
+    	<a href="/index.html"> Powrót do index-u </a> <br>
         <h3>Książka dodana/zmodyfikowana</h3>
         <form method="GET" action="/books/form">
                 <input type="submit" value="dodaj ksiązkę" >

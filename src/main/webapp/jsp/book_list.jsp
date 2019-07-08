@@ -6,6 +6,7 @@
 		<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 	</head>
 	<body>
+		<a href="/index.html"> Powrót do index-u </a> <br>
 		<h3>Lista książek</h3>
 		<c:choose>
 			 <c:when test = "${not empty bookList}">
