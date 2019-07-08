@@ -49,9 +49,9 @@ public class ReservationEditController {
 	}
 
 	@PostMapping("/return")
-	private String deleteReservationByBook(@ModelAttribute BookDto bookDto, Model model) {
+	private String returnReservationByBook(@ModelAttribute BookDto bookDto, Model model) {
 		try {
-			reservationEditService.deleteReservationByBook(bookDto);
+			reservationEditService.returnReservationByBook(bookDto);
 			return "reservation_success";
 		}
 		catch (Exception e){

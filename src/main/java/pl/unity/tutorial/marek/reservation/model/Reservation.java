@@ -34,18 +34,21 @@ public class Reservation {
 	public Reservation(){
 	}
 
-	public Reservation(User user, Book book, ZonedDateTime dateReservation){
+	public Reservation(User user, Book book, ZonedDateTime dateReservationStart){
 		this.user = user;
 		this.book = book;
-		this.dateReservation = dateReservation;
+		this.dateReservationStart = dateReservationStart;
 	}
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="date_reservation")
-	private ZonedDateTime dateReservation;
+	@Column(name="date_reservation_start")
+	private ZonedDateTime dateReservationStart;
+
+	@Column(name="date_reservation_end")
+	private ZonedDateTime dateReservationEnd;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -63,16 +66,6 @@ public class Reservation {
 	public void setId(Long id) {
 
 		this.id = id;
-	}
-
-	public ZonedDateTime getDateReservation() {
-
-		return dateReservation;
-	}
-
-	public void setDateReservation(ZonedDateTime dateReservation) {
-
-		this.dateReservation = dateReservation;
 	}
 
 	public User getUser() {
@@ -93,5 +86,25 @@ public class Reservation {
 	public void setBook(Book book) {
 
 		this.book = book;
+	}
+
+	public ZonedDateTime getDateReservationStart() {
+
+		return dateReservationStart;
+	}
+
+	public void setDateReservationStart(ZonedDateTime dateReservationStart) {
+
+		this.dateReservationStart = dateReservationStart;
+	}
+
+	public ZonedDateTime getDateReservationEnd() {
+
+		return dateReservationEnd;
+	}
+
+	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
+
+		this.dateReservationEnd = dateReservationEnd;
 	}
 }

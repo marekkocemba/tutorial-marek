@@ -31,19 +31,11 @@ public class ReservationEditRepository {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public Reservation saveReservation(Reservation reservation) {
+	public Reservation saveOrUpdateReservation(Reservation reservation) {
 		Session session = sessionFactory.openSession();
 		session.saveOrUpdate(reservation);
 		session.flush();
 		session.close();
 		return reservation;
-	}
-
-	public void deleteReservation(Long reservationId) {
-		Session session = sessionFactory.openSession();
-		Reservation reservation = session.load(Reservation.class,reservationId);
-		session.delete(reservation);
-		session.flush();
-		session.close();
 	}
 }

@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.reservation.repository;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -35,6 +37,7 @@ public class ReservationRepository {
 	}
 
 	public Reservation getReservationByBook(Book book) {
+
 		Session session = sessionFactory.openSession();
 
 		Criteria criteria = session.createCriteria(Reservation.class);
@@ -43,5 +46,16 @@ public class ReservationRepository {
 		Reservation reservation = (Reservation) criteria.uniqueResult();
 		session.close();
 		return reservation;
+	}
+
+	public List<Reservation> getReservationList() {
+
+		Session session = sessionFactory.openSession();
+		Criteria criteria = session.createCriteria(Reservation.class);
+		criteria.createAlias("book", "bk");
+		criteria.add(Restrictions.eq("bk.available", false));
+		List<Reservation> reservationList = criteria.list();
+		session.close();
+		return reservationList;
 	}
 }

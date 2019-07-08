@@ -27,7 +27,8 @@ public class ReservationMapper {
 
 		Reservation reservation = new Reservation();
 		reservation.setId(reservationDto.getId());
-		reservation.setDateReservation(reservationDto.getDateReservation());
+		reservation.setDateReservationStart(reservationDto.getDateReservationStart());
+		reservation.setDateReservationEnd(reservationDto.getDateReservationEnd());
 		reservation.setBook(reservationDto.getBook() != null ? toBook(reservationDto.getBook()) : null);
 		reservation.setUser(reservationDto.getUser() != null ? toUser(reservationDto.getUser()) : null);
 		return reservation;
@@ -37,7 +38,8 @@ public class ReservationMapper {
 
 		ReservationDto reservationDto = new ReservationDto();
 		reservationDto.setId(reservation.getId());
-		reservationDto.setDateReservation(reservation.getDateReservation());
+		reservationDto.setDateReservationStart(reservation.getDateReservationStart());
+		reservationDto.setDateReservationEnd(reservation.getDateReservationEnd());
 		reservationDto.setBook(reservation.getBook() != null ? toBookDto(reservation.getBook()) : null);
 		reservationDto.setUser(reservation.getUser() != null ? toUserDto(reservation.getUser()) : null);
 		return reservationDto;

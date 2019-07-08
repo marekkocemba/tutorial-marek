@@ -66,18 +66,21 @@ public class ReservationEditService {
 		Book book = bookRepository.getBookById(bookDto.getId());
 		book.setAvailable(false);
 		bookEditRepository.saveOrUpdateBook(book);
-		Reservation persistedReservation = reservationEditRepository.saveReservation(
+		Reservation persistedReservation = reservationEditRepository.saveOrUpdateReservation(
 			new Reservation(randomUser, book, ZonedDateTime.now()));
 		return toReservationDto(persistedReservation);
 	}
 
-	public void deleteReservationByBook(BookDto bookDto) {
+	public void returnReservationByBook(BookDto bookDto) {
 
 		Book book = bookRepository.getBookById(bookDto.getId());
 		book.setAvailable(true);
+
 		Reservation reservation = reservationRepository.getReservationByBook(toBook(bookDto));
+		reservation.setDateReservationEnd(ZonedDateTime.now());
+
 		bookEditRepository.saveOrUpdateBook(book);
-		reservationEditRepository.deleteReservation(reservation.getId());
+		reservationEditRepository.saveOrUpdateReservation(reservation);
 
 	}
 }

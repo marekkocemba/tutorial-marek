@@ -22,7 +22,9 @@ public class ReservationDto {
 
 	private Long id;
 
-	private ZonedDateTime dateReservation;
+	private ZonedDateTime dateReservationStart;
+
+	private ZonedDateTime dateReservationEnd;
 
 	private UserDto user;
 
@@ -36,16 +38,6 @@ public class ReservationDto {
 	public void setId(Long id) {
 
 		this.id = id;
-	}
-
-	public ZonedDateTime getDateReservation() {
-
-		return dateReservation;
-	}
-
-	public void setDateReservation(ZonedDateTime dateReservation) {
-
-		this.dateReservation = dateReservation;
 	}
 
 	public UserDto getUser() {
@@ -66,5 +58,25 @@ public class ReservationDto {
 	public void setBook(BookDto book) {
 
 		this.book = book;
+	}
+
+	public ZonedDateTime getDateReservationStart() {
+
+		return dateReservationStart;
+	}
+
+	public void setDateReservationStart(ZonedDateTime dateReservationStart) {
+
+		this.dateReservationStart = dateReservationStart;
+	}
+
+	public ZonedDateTime getDateReservationEnd() {
+
+		return dateReservationEnd;
+	}
+
+	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
+
+		this.dateReservationEnd = dateReservationEnd;
 	}
 }
