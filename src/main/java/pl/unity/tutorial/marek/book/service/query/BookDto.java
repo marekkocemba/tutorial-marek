@@ -17,75 +17,73 @@ import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
 
 public class BookDto {
 
-	private Long id;
+	private final Long id;
 
-	private String title;
+	private final String title;
 
-	private String author;
+	private final String author;
 
-	private BookCategoryEnum bookCategory;
+	private final BookCategoryEnum bookCategory;
 
-	private Integer year;
+	private final Integer year;
 
-	private Boolean available;
+	private final Boolean available;
+
+	public BookDto() {
+
+		this.id = null;
+		this.title = null;
+		this.author = null;
+		this.bookCategory = null;
+		this.year = null;
+		this.available = null;
+
+	}
+
+	public BookDto(Long id, String title, String author, BookCategoryEnum bookCategory, Integer year, Boolean available) {
+
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.bookCategory = bookCategory;
+		this.year = year;
+		this.available = available;
+
+	}
 
 	public Long getId() {
 
 		return id;
-	}
 
-	public void setId(Long id) {
-
-		this.id = id;
 	}
 
 	public String getTitle() {
 
 		return title;
-	}
 
-	public void setTitle(String title) {
-
-		this.title = title;
 	}
 
 	public String getAuthor() {
 
 		return author;
-	}
 
-	public void setAuthor(String author) {
-
-		this.author = author;
 	}
 
 	public BookCategoryEnum getBookCategory() {
 
 		return bookCategory;
-	}
 
-	public void setBookCategory(BookCategoryEnum bookCategory) {
-
-		this.bookCategory = bookCategory;
 	}
 
 	public Integer getYear() {
 
 		return year;
-	}
 
-	public void setYear(Integer year) {
-
-		this.year = year;
 	}
 
 	public Boolean getAvailable() {
 
 		return available;
-	}
 
-	public void setAvailable(Boolean available) {
-
-		this.available = available;
 	}
 }

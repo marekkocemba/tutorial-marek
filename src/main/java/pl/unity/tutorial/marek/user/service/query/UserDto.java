@@ -14,24 +14,39 @@ package pl.unity.tutorial.marek.user.service.query;
 
 public class UserDto {
 
-	private Long id;
+	private final Long id;
 
-	private String name;
+	private final String name;
 
-	private String surname;
+	private final String surname;
 
-	private String telephone;
+	private final String telephone;
 
-	private String email;
+	private final String email;
+
+	public UserDto() {
+
+		this.id = null;
+		this.name = null;
+		this.surname = null;
+		this.telephone = null;
+		this.email = null;
+
+	}
+
+	public UserDto(Long id, String name, String surname, String email, String telephone) {
+
+		this.id = id;
+		this.name = name;
+		this.surname = surname;
+		this.telephone = telephone;
+		this.email = email;
+
+	}
 
 	public Long getId() {
 
 		return id;
-	}
-
-	public void setId(Long id) {
-
-		this.id = id;
 	}
 
 	public String getName() {
@@ -39,19 +54,9 @@ public class UserDto {
 		return name;
 	}
 
-	public void setName(String name) {
-
-		this.name = name;
-	}
-
 	public String getSurname() {
 
 		return surname;
-	}
-
-	public void setSurname(String surname) {
-
-		this.surname = surname;
 	}
 
 	public String getTelephone() {
@@ -59,18 +64,9 @@ public class UserDto {
 		return telephone;
 	}
 
-	public void setTelephone(String telephone) {
-
-		this.telephone = telephone;
-	}
-
 	public String getEmail() {
 
 		return email;
 	}
 
-	public void setEmail(String email) {
-
-		this.email = email;
-	}
 }

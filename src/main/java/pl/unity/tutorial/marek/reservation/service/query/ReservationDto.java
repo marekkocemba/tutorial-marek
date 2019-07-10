@@ -20,44 +20,39 @@ import pl.unity.tutorial.marek.user.service.query.UserDto;
 
 public class ReservationDto {
 
-	private Long id;
+	private final Long id;
 
-	private ZonedDateTime dateReservationStart;
+	private final ZonedDateTime dateReservationStart;
 
-	private ZonedDateTime dateReservationEnd;
+	private final ZonedDateTime dateReservationEnd;
 
-	private UserDto user;
+	private final UserDto user;
 
-	private BookDto book;
+	private final BookDto book;
+
+	public ReservationDto() {
+
+		this.id = null;
+		this.dateReservationStart = null;
+		this.dateReservationEnd = null;
+		this.user = null;
+		this.book = null;
+
+	}
+
+	public ReservationDto(Long id, ZonedDateTime dateReservationStart, ZonedDateTime dateReservationEnd, UserDto user, BookDto book) {
+
+		this.id = id;
+		this.dateReservationStart = dateReservationStart;
+		this.dateReservationEnd = dateReservationEnd;
+		this.user = user;
+		this.book = book;
+
+	}
 
 	public Long getId() {
 
 		return id;
-	}
-
-	public void setId(Long id) {
-
-		this.id = id;
-	}
-
-	public UserDto getUser() {
-
-		return user;
-	}
-
-	public void setUser(UserDto user) {
-
-		this.user = user;
-	}
-
-	public BookDto getBook() {
-
-		return book;
-	}
-
-	public void setBook(BookDto book) {
-
-		this.book = book;
 	}
 
 	public ZonedDateTime getDateReservationStart() {
@@ -65,18 +60,18 @@ public class ReservationDto {
 		return dateReservationStart;
 	}
 
-	public void setDateReservationStart(ZonedDateTime dateReservationStart) {
-
-		this.dateReservationStart = dateReservationStart;
-	}
-
 	public ZonedDateTime getDateReservationEnd() {
 
 		return dateReservationEnd;
 	}
 
-	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
+	public UserDto getUser() {
 
-		this.dateReservationEnd = dateReservationEnd;
+		return user;
+	}
+
+	public BookDto getBook() {
+
+		return book;
 	}
 }

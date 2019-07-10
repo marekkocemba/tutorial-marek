@@ -15,11 +15,10 @@ package pl.unity.tutorial.marek.reservation.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import pl.unity.tutorial.marek.book.service.query.BookDto;
 import pl.unity.tutorial.marek.reservation.service.command.ReservationEditService;
 import pl.unity.tutorial.marek.reservation.service.query.ReservationDto;
 
@@ -33,28 +32,38 @@ public class ReservationEditController {
 	@Autowired
 	private ReservationEditController(ReservationEditService reservationEditService) {
 
+		//asercje
 		this.reservationEditService = reservationEditService;
 	}
 
 	@PostMapping("/user/random")
-	private String addReservationByBookAndRandomUser(@ModelAttribute BookDto bookDto, Model model) {
+	private String addReservationByBookAndRandomUser(@RequestParam Long bookId, Model model) {
+
 		try {
-			ReservationDto reservationDto = reservationEditService.addReservationByBookAndRandomUser(bookDto);
+
+			ReservationDto reservationDto = reservationEditService.addReservationByBookAndRandomUser(bookId);
 			model.addAttribute("reservation", reservationDto);
+
 			return "reservation_success";
 		}
-		catch (Exception e){
+		catch (Exception e) {
+
+			e.printStackTrace();
 			return "reservation_fail";
+
 		}
 	}
 
 	@PostMapping("/return")
-	private String returnReservationByBook(@ModelAttribute BookDto bookDto, Model model) {
+	private String returnReservationByBook(@RequestParam Long bookId) {
+
 		try {
-			reservationEditService.returnReservationByBook(bookDto);
+
+			reservationEditService.returnReservationByBook(bookId);
 			return "reservation_success";
 		}
-		catch (Exception e){
+		catch (Exception e) {
+
 			e.printStackTrace();
 			return "reservation_fail";
 		}

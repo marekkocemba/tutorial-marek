@@ -33,15 +33,15 @@
             	<input type="submit" value="usuń ksiązkę" >
             </form>
             <c:choose>
-            	<c:when test = "${book.available == true}">
+            	<c:when test = "${book.available == true}">//do przemyslenia request param
             		<form method="POST" action="/reservations/user/random">
-            			<input type="hidden" name="id" value="${book.id}">
+            			<input type="hidden" name="bookId" value="${book.id}">
                     	<input type="submit" value="wypożycz ksiązkę" >
                     </form>
             	</c:when>
                 <c:otherwise>
                 	<form method="POST" action="/reservations/return">
-                	    <input type="hidden" name="id" value="${book.id}">
+                	    <input type="hidden" name="bookId" value="${book.id}">
                         <input type="submit" value="oddaj ksiązkę" >
                     </form>
                 </c:otherwise>

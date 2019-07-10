@@ -43,13 +43,7 @@ public class BookMapper {
 	}
 	public static BookDto toBookDto(Book book) {
 
-		BookDto bookDto = new BookDto();
-		bookDto.setId(book.getId());
-		bookDto.setTitle(book.getTitle());
-		bookDto.setAuthor(book.getAuthor());
-		bookDto.setBookCategory(book.getBookCategory());
-		bookDto.setYear(book.getYear());
-		bookDto.setAvailable(book.getAvailable());
-		return bookDto;
+		return new BookDto(book.getId(),book.getTitle(),book.getAuthor(),book.getBookCategory(), book.getYear(), book.getAvailable());
+
 	}
 }

@@ -28,7 +28,9 @@ public class UserMapper {
 		user.setEmail(userDto.getEmail());
 		user.setTelephone(userDto.getTelephone());
 		return user;
+
 	}
+
 	public static User toUser(UserForm userForm) {
 
 		User user = new User();
@@ -38,15 +40,12 @@ public class UserMapper {
 		user.setEmail(userForm.getEmail());
 		user.setTelephone(userForm.getTelephone());
 		return user;
+
 	}
+
 	public static UserDto toUserDto(User user) {
-		UserDto userDto = new UserDto();
-		userDto.setId(user.getId());
-		userDto.setName(user.getName());
-		userDto.setSurname(user.getSurname());
-		userDto.setEmail(user.getEmail());
-		userDto.setTelephone(user.getTelephone());
-		return userDto;
+
+		return new UserDto(user.getId(), user.getName(), user.getSurname(), user.getEmail(), user.getTelephone());
 
 	}
 }
