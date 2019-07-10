@@ -22,10 +22,9 @@
 			<br>
 			Autor: <form:input path="author"/>
 			<br>
-			<form:errors path="yearFrom" class='error'/>
 			Rok od: <form:input path="yearFrom"/>
+			<form:errors path="yearFrom" class='error'/>
         	<br>
-        	<form:errors path="yearTo" class='error'/>
         	Rok do: <form:input path="yearTo"/>
         	<br>
         	Kategoria:

@@ -51,7 +51,7 @@ public class ReservationServiceTest {
 		Book book = new Book();
 		book.setId(1L);
 		reservation = new Reservation(user, book, null);
-		
+
 	}
 
 	@Test

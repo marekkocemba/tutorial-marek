@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pl.unity.tutorial.marek.book.service.query.BookQueryDto;
+import pl.unity.tutorial.marek.book.service.query.BookQueryForm;
 import pl.unity.tutorial.marek.book.service.query.BookService;
 
 
@@ -33,10 +33,14 @@ class BookController {
 
 	private final BookService bookService;
 
-	@Autowired
-	private BookController(BookService bookService) {
+	private final BookQueryValidator bookQueryValidator;
 
+	@Autowired
+	private BookController(BookService bookService, BookQueryValidator bookQueryValidator) {
+		//assercja
 		this.bookService = bookService;
+		this.bookQueryValidator = bookQueryValidator;
+
 	}
 
 	@GetMapping("/{id}")
@@ -44,14 +48,21 @@ class BookController {
 
 		model.addAttribute("book", bookService.getBookById(id));
 		return "book_details";
+
 	}
 
 	@GetMapping
-	private String getBookList(@Valid @ModelAttribute("book") BookQueryDto bookQueryDto, BindingResult bindingResult, Model model) {
+	private String getBookList(@Valid @ModelAttribute("book") BookQueryForm bookQueryForm, BindingResult bindingResult, Model model) {
+
+		if(bookQueryForm != null) {
+			bookQueryValidator.validate(bookQueryForm, bindingResult);
+		}
 		if (bindingResult.hasErrors()) {
 			return "book_list";
 		}
-		model.addAttribute("bookList", bookService.getBookList(bookQueryDto));
+
+		model.addAttribute("bookList", bookService.getBookList(bookQueryForm));
 		return "book_list";
+
 	}
 }
