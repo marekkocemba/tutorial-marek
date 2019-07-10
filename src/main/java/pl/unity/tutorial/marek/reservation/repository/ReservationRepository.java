@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.reservation.repository;
 
+import static org.springframework.util.Assert.notNull;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -33,6 +35,7 @@ public class ReservationRepository {
 	@Autowired
 	public ReservationRepository(SessionFactory sessionFactory) {
 
+		notNull(sessionFactory, "SessionFactory should be not null");
 		this.sessionFactory = sessionFactory;
 	}
 

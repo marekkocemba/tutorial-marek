@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.user.model;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +23,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "users_registered")
+@Access(AccessType.FIELD)
 public class User {
 
 	@Id

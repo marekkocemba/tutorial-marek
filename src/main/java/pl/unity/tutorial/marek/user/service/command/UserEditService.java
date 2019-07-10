@@ -12,6 +12,7 @@
 
 package pl.unity.tutorial.marek.user.service.command;
 
+import static org.springframework.util.Assert.notNull;
 import static pl.unity.tutorial.marek.user.service.UserMapper.toUser;
 import static pl.unity.tutorial.marek.user.service.UserMapper.toUserDto;
 
@@ -31,6 +32,7 @@ public class UserEditService {
 	@Autowired
 	public UserEditService(UserEditRepository userEditRepository) {
 
+		notNull(userEditRepository, "UserEditRepository should be not null");
 		this.userEditRepository = userEditRepository;
 	}
 

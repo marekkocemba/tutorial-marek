@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.book.repository;
 
+import static org.springframework.util.Assert.notNull;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +27,12 @@ public class BookEditRepository {
 
 	private final SessionFactory sessionFactory;
 
-	//TODO: przez konstruktor
 	@Autowired
 	public BookEditRepository(SessionFactory sessionFactory) {
 
+		notNull(sessionFactory, "SessionFactory should be not null");
 		this.sessionFactory = sessionFactory;
+
 	}
 
 	public Book saveOrUpdateBook(Book book) {
@@ -49,5 +52,6 @@ public class BookEditRepository {
 		session.delete(book);
 		session.flush();
 		session.close();
+
 	}
 }

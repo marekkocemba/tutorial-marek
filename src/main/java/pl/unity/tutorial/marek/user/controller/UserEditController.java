@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.user.controller;
 
+import static org.springframework.util.Assert.notNull;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,8 @@ class UserEditController {
 	@Autowired
 	private UserEditController(UserEditService userEditService, UserService userService) {
 
+		notNull(userEditService, "UserEditService should be not null");
+		notNull(userService, "UserService should be not null");
 		this.userEditService = userEditService;
 		this.userService = userService;
 	}

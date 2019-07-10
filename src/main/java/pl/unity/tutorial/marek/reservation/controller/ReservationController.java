@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.reservation.controller;
 
+import static org.springframework.util.Assert.notNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +32,9 @@ public class ReservationController {
 	@Autowired
 	private ReservationController(ReservationService reservationService) {
 
+		notNull(reservationService, "ReservationService should be not null");
 		this.reservationService = reservationService;
+
 	}
 
 	@GetMapping("/book/available/false")
@@ -38,5 +42,6 @@ public class ReservationController {
 
 		model.addAttribute("reservationList", reservationService.getReservationsWhereBooksNotReturned());
 		return "reservation_list";
+
 	}
 }

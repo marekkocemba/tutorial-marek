@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.book.repository;
 
+import static org.springframework.util.Assert.notNull;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -23,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pl.unity.tutorial.marek.book.model.Book;
-import pl.unity.tutorial.marek.book.service.query.BookQueryDto;
+import pl.unity.tutorial.marek.book.service.query.BookQueryForm;
 
 
 @Repository
@@ -31,11 +33,13 @@ public class BookRepository {
 
 	private final SessionFactory sessionFactory;
 
-	//TODO: przez konstruktor
+	//TODO: wspolna klasa bazowa
 	@Autowired
-	public BookRepository(SessionFactory sessionFactory) {
+	BookRepository(SessionFactory sessionFactory) {
 
+		notNull(sessionFactory, "SessionFactory should be not null");
 		this.sessionFactory = sessionFactory;
+
 	}
 
 	public Book getBookById(Long id) {
@@ -45,33 +49,37 @@ public class BookRepository {
 			.add(Restrictions.eq("id", id));
 		Book book = (Book) criteria.uniqueResult();
 		session.close();
+
 		return book;
+
 	}
 
-	public List<Book> getBookList(BookQueryDto bookQueryDto) {
+	public List<Book> getBookList(BookQueryForm bookQueryForm) {
 
 		Session session = sessionFactory.openSession();
 		Criteria criteria = session.createCriteria(Book.class);
-		if(bookQueryDto.getTitle() != null && !bookQueryDto.getTitle().isBlank()){
-			criteria.add(Restrictions.like("title", bookQueryDto.getTitle(), MatchMode.ANYWHERE).ignoreCase());
+		if (bookQueryForm.getTitle() != null && !bookQueryForm.getTitle().isBlank()) {
+			criteria.add(Restrictions.like("title", bookQueryForm.getTitle(), MatchMode.ANYWHERE).ignoreCase());
 		}
-		if(bookQueryDto.getAuthor() != null && !bookQueryDto.getAuthor().isBlank()){
-			criteria.add(Restrictions.like("author", bookQueryDto.getAuthor(), MatchMode.ANYWHERE).ignoreCase());
+		if (bookQueryForm.getAuthor() != null && !bookQueryForm.getAuthor().isBlank()) {
+			criteria.add(Restrictions.like("author", bookQueryForm.getAuthor(), MatchMode.ANYWHERE).ignoreCase());
 		}
-		if(bookQueryDto.getYearFrom() != null){
-			criteria.add(Restrictions.ge("year", bookQueryDto.getYearFrom()));
+		if (bookQueryForm.getYearFrom() != null) {
+			criteria.add(Restrictions.ge("year", bookQueryForm.getYearFrom()));
 		}
-		if(bookQueryDto.getYearTo() != null){
-			criteria.add(Restrictions.le("year", bookQueryDto.getYearTo()));
+		if (bookQueryForm.getYearTo() != null) {
+			criteria.add(Restrictions.le("year", bookQueryForm.getYearTo()));
 		}
-		if(bookQueryDto.getBookCategoryList() != null && !bookQueryDto.getBookCategoryList().isEmpty()){
-			criteria.add(Restrictions.in("bookCategory", bookQueryDto.getBookCategoryList()));
+		if (bookQueryForm.getBookCategoryList() != null && !bookQueryForm.getBookCategoryList().isEmpty()) {
+			criteria.add(Restrictions.in("bookCategory", bookQueryForm.getBookCategoryList()));
 		}
-		if(Boolean.TRUE.equals(bookQueryDto.getAvailable())){
-			criteria.add(Restrictions.eq("available", bookQueryDto.getAvailable()));
+		if (Boolean.TRUE.equals(bookQueryForm.getAvailable())) {
+			criteria.add(Restrictions.eq("available", bookQueryForm.getAvailable()));
 		}
 		List<Book> bookList = criteria.list();
 		session.close();
+
 		return bookList;
+
 	}
 }

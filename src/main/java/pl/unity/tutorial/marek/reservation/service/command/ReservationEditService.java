@@ -12,7 +12,7 @@
 
 package pl.unity.tutorial.marek.reservation.service.command;
 
-import static pl.unity.tutorial.marek.book.service.BookMapper.toBook;
+import static org.springframework.util.Assert.notNull;
 import static pl.unity.tutorial.marek.reservation.service.ReservationMapper.toReservationDto;
 
 import java.time.ZonedDateTime;
@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 import pl.unity.tutorial.marek.book.model.Book;
 import pl.unity.tutorial.marek.book.repository.BookEditRepository;
 import pl.unity.tutorial.marek.book.repository.BookRepository;
-import pl.unity.tutorial.marek.book.service.query.BookDto;
 import pl.unity.tutorial.marek.reservation.model.Reservation;
 import pl.unity.tutorial.marek.reservation.repository.ReservationEditRepository;
 import pl.unity.tutorial.marek.reservation.repository.ReservationRepository;
@@ -50,30 +49,38 @@ public class ReservationEditService {
 		ReservationRepository reservationRepository, UserService userService,
 		BookRepository bookRepository, BookEditRepository bookEditRepository) {
 
+		notNull(reservationEditRepository, "ReservationEditRepository should be not null");
+		notNull(reservationRepository, "ReservationRepository should be not null");
+		notNull(reservationEditRepository, "SessionFactory should be not null");
+		notNull(bookRepository, "BookRepository should be not null");
+		notNull(bookEditRepository, "BookEditRepository should be not null");
+
 		this.reservationEditRepository = reservationEditRepository;
 		this.reservationRepository = reservationRepository;
 		this.userService = userService;
 		this.bookRepository = bookRepository;
 		this.bookEditRepository = bookEditRepository;
+
 	}
 
-	public ReservationDto addReservationByBookAndRandomUser(BookDto bookDto) {
+	public ReservationDto addReservationByBookAndRandomUser(Long bookId) {
 
 		User randomUser = userService.getUserRandom();
-		Book book = bookRepository.getBookById(bookDto.getId());
+		Book book = bookRepository.getBookById(bookId);
 		book.setAvailable(false);
 		bookEditRepository.saveOrUpdateBook(book);
 		Reservation persistedReservation = reservationEditRepository.saveOrUpdateReservation(
 			new Reservation(randomUser, book, ZonedDateTime.now()));
 		return toReservationDto(persistedReservation);
+
 	}
 
-	public void returnReservationByBook(BookDto bookDto) {
+	public void returnReservationByBook(Long bookId) {
 
-		Book book = bookRepository.getBookById(bookDto.getId());
+		Book book = bookRepository.getBookById(bookId);
 		book.setAvailable(true);
 
-		Reservation reservation = reservationRepository.getReservationByBook(toBook(bookDto));
+		Reservation reservation = reservationRepository.getReservationByBook(book);
 		reservation.setDateReservationEnd(ZonedDateTime.now());
 
 		bookEditRepository.saveOrUpdateBook(book);

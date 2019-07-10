@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.user.repository;
 
+import static org.springframework.util.Assert.notNull;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -29,11 +31,12 @@ public class UserRepository {
 
 	private final SessionFactory sessionFactory;
 
-	//TODO: przez konstruktor
 	@Autowired
 	public UserRepository(SessionFactory sessionFactory) {
 
+		notNull(sessionFactory, "SessionFactory should be not null");
 		this.sessionFactory = sessionFactory;
+
 	}
 
 	public User getUserById(Long id) {
@@ -44,6 +47,7 @@ public class UserRepository {
 		User user = (User) criteria.uniqueResult();
 		session.close();
 		return user;
+
 	}
 
 	public List<User> getUserList() {
@@ -53,5 +57,6 @@ public class UserRepository {
 		List<User> userList = criteria.list();
 		session.close();
 		return userList;
+
 	}
 }

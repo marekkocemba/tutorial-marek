@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.user.controller;
 
+import static org.springframework.util.Assert.notNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +33,9 @@ class UserController {
 	@Autowired
 	private UserController(UserService userService) {
 
+		notNull(userService, "UserService should be not null");
 		this.userService = userService;
+
 	}
 
 	@GetMapping("/{id}")
@@ -39,6 +43,7 @@ class UserController {
 
 		model.addAttribute("user", userService.getUserById(id));
 		return "user_details";
+
 	}
 
 	@GetMapping
@@ -46,5 +51,6 @@ class UserController {
 
 		model.addAttribute("userList", userService.getUserList());
 		return "user_list";
+
 	}
 }

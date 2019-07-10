@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.user.repository;
 
+import static org.springframework.util.Assert.notNull;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,9 @@ public class UserEditRepository {
 	@Autowired
 	public UserEditRepository(SessionFactory sessionFactory) {
 
+		notNull(sessionFactory, "SessionFactory should be not null");
 		this.sessionFactory = sessionFactory;
+
 	}
 
 	public User saveOrUpdateUser(User user) {
@@ -49,5 +53,6 @@ public class UserEditRepository {
 		session.delete(user);
 		session.flush();
 		session.close();
+
 	}
 }

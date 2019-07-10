@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.reservation.controller;
 
+import static org.springframework.util.Assert.notNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,8 +34,9 @@ public class ReservationEditController {
 	@Autowired
 	private ReservationEditController(ReservationEditService reservationEditService) {
 
-		//asercje
+		notNull(reservationEditService, "ReservationEditService should be not null");
 		this.reservationEditService = reservationEditService;
+
 	}
 
 	@PostMapping("/user/random")

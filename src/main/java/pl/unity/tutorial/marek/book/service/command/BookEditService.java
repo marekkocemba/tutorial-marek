@@ -12,6 +12,7 @@
 
 package pl.unity.tutorial.marek.book.service.command;
 
+import static org.springframework.util.Assert.notNull;
 import static pl.unity.tutorial.marek.book.service.BookMapper.toBook;
 import static pl.unity.tutorial.marek.book.service.BookMapper.toBookDto;
 
@@ -31,19 +32,23 @@ public class BookEditService {
 	@Autowired
 	public BookEditService(BookEditRepository bookEditRepository) {
 
+		notNull(bookEditRepository, "BookEditRepository should be not null");
 		this.bookEditRepository = bookEditRepository;
 	}
 
 	public BookDto saveOrUpdateBook(BookForm bookForm) {
-		if(bookForm.getAvailable() == null){
+
+		if (bookForm.getAvailable() == null) {
 			bookForm.setAvailable(true);
 		}
 		Book persistedBook = bookEditRepository.saveOrUpdateBook(toBook(bookForm));
 		return toBookDto(persistedBook);
+
 	}
 
 	public void deleteBook(Long id) {
 
 		bookEditRepository.deleteBook(id);
+
 	}
 }

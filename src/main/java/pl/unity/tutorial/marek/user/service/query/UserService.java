@@ -12,6 +12,7 @@
 
 package pl.unity.tutorial.marek.user.service.query;
 
+import static org.springframework.util.Assert.notNull;
 import static pl.unity.tutorial.marek.user.service.UserMapper.toUserDto;
 
 import java.util.List;
@@ -34,13 +35,16 @@ public class UserService {
 	@Autowired
 	public UserService(UserRepository userRepository) {
 
+		notNull(userRepository, "UserRepository should be not null");
 		this.userRepository = userRepository;
+
 	}
 
 	public UserDto getUserById(Long id) {
 
 		User user = userRepository.getUserById(id);
 		return toUserDto(user);
+
 	}
 
 	public List<UserDto> getUserList() {
@@ -49,11 +53,14 @@ public class UserService {
 			.stream()
 			.map(UserMapper::toUserDto)
 			.collect(Collectors.toList());
+
 	}
 
 	public User getUserRandom() {
+
 		Random randomGenerator = new Random();
 		List<User> userList = userRepository.getUserList();
 		return userList.get(randomGenerator.nextInt(userList.size()));
+
 	}
 }

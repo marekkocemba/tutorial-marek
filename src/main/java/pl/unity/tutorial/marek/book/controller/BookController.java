@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.book.controller;
 
+import static org.springframework.util.Assert.notNull;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +39,10 @@ class BookController {
 
 	@Autowired
 	private BookController(BookService bookService, BookQueryValidator bookQueryValidator) {
-		//assercja
+
+		notNull(bookService, "BookService should be not null");
+		notNull(bookQueryValidator, "BookQueryValidator should be not null");
+
 		this.bookService = bookService;
 		this.bookQueryValidator = bookQueryValidator;
 
@@ -54,7 +59,7 @@ class BookController {
 	@GetMapping
 	private String getBookList(@Valid @ModelAttribute("book") BookQueryForm bookQueryForm, BindingResult bindingResult, Model model) {
 
-		if(bookQueryForm != null) {
+		if (bookQueryForm != null) {
 			bookQueryValidator.validate(bookQueryForm, bindingResult);
 		}
 		if (bindingResult.hasErrors()) {

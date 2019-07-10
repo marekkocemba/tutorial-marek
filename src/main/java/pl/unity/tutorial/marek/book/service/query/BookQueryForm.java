@@ -14,12 +14,10 @@ package pl.unity.tutorial.marek.book.service.query;
 
 import java.util.List;
 
-import javax.validation.constraints.Min;
-
 import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
 
 
-public class BookQueryDto {
+public class BookQueryForm {
 
 
 	private String title;
@@ -27,11 +25,9 @@ public class BookQueryDto {
 	private String author;
 
 	private List<BookCategoryEnum> bookCategoryList;
-
-	@Min(0)
+	//validator na sprawdzenie
 	private Integer yearFrom;
 
-	@Min(0)
 	private Integer yearTo;
 
 	private Boolean available;

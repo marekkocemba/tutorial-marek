@@ -42,9 +42,9 @@ public class BookService {
 		return toBookDto(book);
 	}
 
-	public List<BookDto> getBookList(BookQueryDto bookQueryDto) {
+	public List<BookDto> getBookList(BookQueryForm bookQueryForm) {
 
-		return bookRepository.getBookList(bookQueryDto)
+		return bookRepository.getBookList(bookQueryForm)
 			.stream()
 			.map(BookMapper::toBookDto)
 			.collect(Collectors.toList());

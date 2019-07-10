@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.zzz.unknown.config.initial.data;
 
+import static org.springframework.util.Assert.notNull;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +34,13 @@ public class InitialData {
 
 	@Autowired
 	public InitialData(BookEditRepository bookEditRepository, UserEditRepository userEditRepository){
+
+		notNull(bookEditRepository, "BookEditRepository should be not null");
+		notNull(userEditRepository, "UserEditRepository should be not null");
+
 		this.bookEditRepository = bookEditRepository;
 		this.userEditRepository = userEditRepository;
+
 	}
 
 	@PostConstruct
@@ -44,6 +51,7 @@ public class InitialData {
 
 
 	public void setBooks(){
+
 		Book book1 = new Book();
 		book1.setTitle("W poszukiwaniu straconego czasu");
 		book1.setAuthor("Marcel Proust");
@@ -68,9 +76,11 @@ public class InitialData {
 		bookEditRepository.saveOrUpdateBook(book1);
 		bookEditRepository.saveOrUpdateBook(book2);
 		bookEditRepository.saveOrUpdateBook(book3);
+
 	}
 
 	private void setUsers() {
+
 		User user1 = new User();
 		user1.setName("Zenon");
 		user1.setSurname("Martyniuk");
@@ -85,5 +95,6 @@ public class InitialData {
 
 		userEditRepository.saveOrUpdateUser(user1);
 		userEditRepository.saveOrUpdateUser(user2);
+
 	}
 }

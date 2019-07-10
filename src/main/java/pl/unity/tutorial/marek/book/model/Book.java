@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.book.model;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -26,6 +28,7 @@ import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
 
 @Entity
 @Table(name = "books")
+@Access(AccessType.FIELD)
 public class Book {
 
 	@Id

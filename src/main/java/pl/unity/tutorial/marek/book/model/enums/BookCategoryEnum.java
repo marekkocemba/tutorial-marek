@@ -13,6 +13,7 @@
 package pl.unity.tutorial.marek.book.model.enums;
 
 public enum BookCategoryEnum {
+
 	PROZA("proza"), DRAMAT("dramat"), OPOWIADANIE("opowiadanie"), PORADNIK("poradnik");
 
 	private String small;
@@ -20,9 +21,12 @@ public enum BookCategoryEnum {
 	BookCategoryEnum(String small) {
 
 		this.small = small;
+
 	}
 
-	public String getSmall(){
+	public String getSmall() {
+
 		return this.small;
+
 	}
 }

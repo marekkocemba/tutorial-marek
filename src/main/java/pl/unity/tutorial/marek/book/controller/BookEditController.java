@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.book.controller;
 
+import static org.springframework.util.Assert.notNull;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +42,12 @@ class BookEditController {
 	@Autowired
 	private BookEditController(BookEditService bookEditService, BookService bookService) {
 
+		notNull(bookEditService, "BookEditService should be not null");
+		notNull(bookService, "BookService should be not null");
+
 		this.bookEditService = bookEditService;
 		this.bookService = bookService;
+
 	}
 
 	@GetMapping("/form")
@@ -49,6 +55,7 @@ class BookEditController {
 
 		model.addAttribute("book", new BookDto());
 		return "book_form";
+
 	}
 
 	@GetMapping("/form/{id}")
@@ -56,6 +63,7 @@ class BookEditController {
 
 		model.addAttribute("book", bookService.getBookById(id));
 		return "book_form";
+
 	}
 
 	@PostMapping
@@ -66,6 +74,7 @@ class BookEditController {
 		}
 		bookEditService.saveOrUpdateBook(bookForm);
 		return "book_success";
+
 	}
 
 	//obejscie bo nie jest obsługiwana metoda DELETE powinno byc @DeleteMapping("/{id}")
@@ -74,5 +83,6 @@ class BookEditController {
 
 		bookEditService.deleteBook(id);
 		return "book_success";
+
 	}
 }

@@ -12,9 +12,7 @@
 
 package pl.unity.tutorial.marek.reservation.service;
 
-import static pl.unity.tutorial.marek.book.service.BookMapper.toBook;
 import static pl.unity.tutorial.marek.book.service.BookMapper.toBookDto;
-import static pl.unity.tutorial.marek.user.service.UserMapper.toUser;
 import static pl.unity.tutorial.marek.user.service.UserMapper.toUserDto;
 
 import pl.unity.tutorial.marek.reservation.model.Reservation;
@@ -22,18 +20,6 @@ import pl.unity.tutorial.marek.reservation.service.query.ReservationDto;
 
 
 public class ReservationMapper {
-
-	public static Reservation toReservation(ReservationDto reservationDto) {
-
-		Reservation reservation = new Reservation();
-		reservation.setId(reservationDto.getId());
-		reservation.setDateReservationStart(reservationDto.getDateReservationStart());
-		reservation.setDateReservationEnd(reservationDto.getDateReservationEnd());
-		reservation.setBook(reservationDto.getBook() != null ? toBook(reservationDto.getBook()) : null);
-		reservation.setUser(reservationDto.getUser() != null ? toUser(reservationDto.getUser()) : null);
-		return reservation;
-
-	}
 
 	public static ReservationDto toReservationDto(Reservation reservation) {
 

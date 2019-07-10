@@ -12,8 +12,12 @@
 
 package pl.unity.tutorial.marek.reservation.model;
 
+import static org.springframework.util.Assert.notNull;
+
 import java.time.ZonedDateTime;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,12 +33,18 @@ import pl.unity.tutorial.marek.user.model.User;
 
 @Entity
 @Table(name = "reservations")
+@Access(AccessType.FIELD)
 public class Reservation {
 
 	public Reservation(){
 	}
 
 	public Reservation(User user, Book book, ZonedDateTime dateReservationStart){
+
+		notNull(user, "User should be not null");
+		notNull(book, "Book should be not null");
+		notNull(dateReservationStart, "ZonedDateTime should be not null");
+
 		this.user = user;
 		this.book = book;
 		this.dateReservationStart = dateReservationStart;
@@ -68,26 +78,6 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public User getUser() {
-
-		return user;
-	}
-
-	public void setUser(User user) {
-
-		this.user = user;
-	}
-
-	public Book getBook() {
-
-		return book;
-	}
-
-	public void setBook(Book book) {
-
-		this.book = book;
-	}
-
 	public ZonedDateTime getDateReservationStart() {
 
 		return dateReservationStart;
@@ -106,5 +96,25 @@ public class Reservation {
 	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
 
 		this.dateReservationEnd = dateReservationEnd;
+	}
+
+	public User getUser() {
+
+		return user;
+	}
+
+	public void setUser(User user) {
+
+		this.user = user;
+	}
+
+	public Book getBook() {
+
+		return book;
+	}
+
+	public void setBook(Book book) {
+
+		this.book = book;
 	}
 }

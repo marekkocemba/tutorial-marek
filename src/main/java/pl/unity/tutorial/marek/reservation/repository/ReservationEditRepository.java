@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.reservation.repository;
 
+import static org.springframework.util.Assert.notNull;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,16 +28,19 @@ public class ReservationEditRepository {
 	private final SessionFactory sessionFactory;
 
 	@Autowired
-	public ReservationEditRepository(SessionFactory sessionFactory) {
+	ReservationEditRepository(SessionFactory sessionFactory) {
 
+		notNull(sessionFactory, "SessionFactory should be not null");
 		this.sessionFactory = sessionFactory;
 	}
-
+//sprawdzic tranzakcje
 	public Reservation saveOrUpdateReservation(Reservation reservation) {
+
 		Session session = sessionFactory.openSession();
 		session.saveOrUpdate(reservation);
 		session.flush();
 		session.close();
+		//linia odstepu
 		return reservation;
 	}
 }
