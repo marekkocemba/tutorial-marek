@@ -20,6 +20,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.ZonedDateTime;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -59,7 +60,7 @@ public class ReservationEditServiceTest {
 	@Mock
 	private UserService userService;
 
-	private BookDto bookDto = new BookDto();
+	private BookDto bookDto;
 
 	private Book book = new Book();
 
@@ -72,7 +73,7 @@ public class ReservationEditServiceTest {
 
 		MockitoAnnotations.initMocks(this);
 
-		bookDto.setId(1L);
+		bookDto = new BookDto(1L,null,null,null,null, null);
 		book.setId(1L);
 		user.setId(1L);
 	}
@@ -83,13 +84,13 @@ public class ReservationEditServiceTest {
 		//before
 
 		when(userService.getUserRandom()).thenReturn(user);
-		when(bookRepository.getBookById(bookDto.getId())).thenReturn(book);
+		when(bookRepository.findBookById((bookDto.getId()))).thenReturn(Optional.of(book));
 		when(bookEditRepository.saveOrUpdateBook(book)).thenReturn(book);
 		when(reservationEditRepository.saveOrUpdateReservation(any(Reservation.class))).thenReturn(reservation);
 
 		//when
 
-		ReservationDto result = reservationEditService.addReservationByBookAndRandomUser(bookDto);
+		ReservationDto result = reservationEditService.addReservationByBookAndRandomUser(1L);
 
 		//then
 
@@ -104,14 +105,14 @@ public class ReservationEditServiceTest {
 
 		//before
 
-		when(bookRepository.getBookById(bookDto.getId())).thenReturn(book);
-		when(reservationRepository.getReservationByBook(any(Book.class))).thenReturn(reservation);
+		when(bookRepository.findBookById(bookDto.getId())).thenReturn(Optional.of(book));
+		when(reservationRepository.findReservationByBook(any(Book.class))).thenReturn(Optional.of(reservation));
 		when(bookEditRepository.saveOrUpdateBook(book)).thenReturn(book);
 		when(reservationEditRepository.saveOrUpdateReservation(reservation)).thenReturn(reservation);
 
 		//when
 
-		reservationEditService.returnReservationByBook(bookDto);
+		reservationEditService.returnReservationByBook(1L);
 
 		//then
 

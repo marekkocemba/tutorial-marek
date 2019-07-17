@@ -12,35 +12,30 @@
 
 package pl.unity.tutorial.marek.reservation.repository;
 
-import static org.springframework.util.Assert.notNull;
+import javax.persistence.EntityManager;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pl.unity.tutorial.marek.common.repository.AbstractRepository;
 import pl.unity.tutorial.marek.reservation.model.Reservation;
 
 
 @Repository
-public class ReservationEditRepository {
-
-	private final SessionFactory sessionFactory;
+public class ReservationEditRepository extends AbstractRepository<Reservation> {
 
 	@Autowired
-	ReservationEditRepository(SessionFactory sessionFactory) {
+	public ReservationEditRepository(EntityManager entityManager) {
 
-		notNull(sessionFactory, "SessionFactory should be not null");
-		this.sessionFactory = sessionFactory;
+		super(entityManager, Reservation.class);
+
 	}
-//sprawdzic tranzakcje
+
 	public Reservation saveOrUpdateReservation(Reservation reservation) {
 
-		Session session = sessionFactory.openSession();
-		session.saveOrUpdate(reservation);
-		session.flush();
-		session.close();
-		//linia odstepu
+		saveOrUpdate(reservation);
+
 		return reservation;
+
 	}
 }

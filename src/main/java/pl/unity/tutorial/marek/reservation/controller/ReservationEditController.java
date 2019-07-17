@@ -55,6 +55,7 @@ public class ReservationEditController {
 			return "reservation_fail";
 
 		}
+
 	}
 
 	@PostMapping("/return")
@@ -70,5 +71,6 @@ public class ReservationEditController {
 			e.printStackTrace();
 			return "reservation_fail";
 		}
+
 	}
 }

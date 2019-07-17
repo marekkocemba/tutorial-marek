@@ -42,7 +42,7 @@ public class ReservationServiceTest {
 	private Reservation reservation;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 
 		MockitoAnnotations.initMocks(this);
 

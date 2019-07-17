@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import pl.unity.tutorial.marek.user.model.User;
 import pl.unity.tutorial.marek.user.repository.UserEditRepository;
+import pl.unity.tutorial.marek.user.repository.UserRepository;
 import pl.unity.tutorial.marek.user.service.query.UserDto;
 
 
@@ -28,22 +29,31 @@ import pl.unity.tutorial.marek.user.service.query.UserDto;
 public class UserEditService {
 
 	private final UserEditRepository userEditRepository;
+	private final UserRepository userRepository;
 
 	@Autowired
-	public UserEditService(UserEditRepository userEditRepository) {
+	public UserEditService(UserEditRepository userEditRepository, UserRepository userRepository) {
 
 		notNull(userEditRepository, "UserEditRepository should be not null");
+		notNull(userRepository, "UserRepository should be not null");
+
+		this.userRepository = userRepository;
 		this.userEditRepository = userEditRepository;
+
 	}
 
 	public UserDto saveOrUpdateUser(UserForm userForm) {
 
 		User persistedUser = userEditRepository.saveOrUpdateUser(toUser(userForm));
 		return toUserDto(persistedUser);
+
 	}
 
 	public void deleteUser(Long id) {
 
-		userEditRepository.deleteUser(id);
+		User user = userRepository.findUserById(id)
+			.orElseThrow(() -> new RuntimeException("No user found by id: " + id));
+		userEditRepository.deleteUser(user);
+
 	}
 }

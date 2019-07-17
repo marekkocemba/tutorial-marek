@@ -36,28 +36,29 @@ import pl.unity.tutorial.marek.user.model.User;
 @Access(AccessType.FIELD)
 public class Reservation {
 
-	public Reservation(){
+	public Reservation() {
+
 	}
 
-	public Reservation(User user, Book book, ZonedDateTime dateReservationStart){
+	public Reservation(User user, Book book, ZonedDateTime dateReservationStart) {
 
 		notNull(user, "User should be not null");
 		notNull(book, "Book should be not null");
-		notNull(dateReservationStart, "ZonedDateTime should be not null");
 
 		this.user = user;
 		this.book = book;
 		this.dateReservationStart = dateReservationStart;
+
 	}
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name="date_reservation_start")
+	@Column(name = "date_reservation_start")
 	private ZonedDateTime dateReservationStart;
 
-	@Column(name="date_reservation_end")
+	@Column(name = "date_reservation_end")
 	private ZonedDateTime dateReservationEnd;
 
 	@ManyToOne

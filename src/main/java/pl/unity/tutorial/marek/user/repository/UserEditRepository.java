@@ -12,47 +12,35 @@
 
 package pl.unity.tutorial.marek.user.repository;
 
-import static org.springframework.util.Assert.notNull;
+import javax.persistence.EntityManager;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pl.unity.tutorial.marek.common.repository.AbstractRepository;
 import pl.unity.tutorial.marek.user.model.User;
 
 
 @Repository
-public class UserEditRepository {
+public class UserEditRepository extends AbstractRepository<User> {
 
-	private final SessionFactory sessionFactory;
-
-	//TODO: przez konstruktor
 	@Autowired
-	public UserEditRepository(SessionFactory sessionFactory) {
+	public UserEditRepository(EntityManager entityManager) {
 
-		notNull(sessionFactory, "SessionFactory should be not null");
-		this.sessionFactory = sessionFactory;
+		super(entityManager, User.class);
 
 	}
 
 	public User saveOrUpdateUser(User user) {
 
-		Session session = sessionFactory.openSession();
-		session.saveOrUpdate(user);
-		session.flush();
-		session.close();
+		saveOrUpdate(user);
 		return user;
 
 	}
 
-	public void deleteUser(Long id) {
+	public void deleteUser(User user) {
 
-		Session session = sessionFactory.openSession();
-		User user = (User) session.load(User.class, id);
-		session.delete(user);
-		session.flush();
-		session.close();
+		delete(user);
 
 	}
 }

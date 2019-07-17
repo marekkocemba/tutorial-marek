@@ -10,7 +10,7 @@ public class TutorialMarekApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(TutorialMarekApplication.class, args);
-		
+
 	}
 
 }

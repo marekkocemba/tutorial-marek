@@ -10,7 +10,7 @@
  * i w zgodzie z warunkami umowy licencyjnej zawartej z Unity S.A.
  */
 
-package pl.unity.tutorial.marek.zzz.unknown.config.initial.data;
+package pl.unity.tutorial.marek.common.config.data;
 
 import static org.springframework.util.Assert.notNull;
 
@@ -33,7 +33,7 @@ public class InitialData {
 	private final UserEditRepository userEditRepository;
 
 	@Autowired
-	public InitialData(BookEditRepository bookEditRepository, UserEditRepository userEditRepository){
+	public InitialData(BookEditRepository bookEditRepository, UserEditRepository userEditRepository) {
 
 		notNull(bookEditRepository, "BookEditRepository should be not null");
 		notNull(userEditRepository, "UserEditRepository should be not null");
@@ -44,13 +44,14 @@ public class InitialData {
 	}
 
 	@PostConstruct
-	public void setObjects(){
+	public void setObjects() {
+
 		setBooks();
 		setUsers();
+
 	}
 
-
-	public void setBooks(){
+	public void setBooks() {
 
 		Book book1 = new Book();
 		book1.setTitle("W poszukiwaniu straconego czasu");

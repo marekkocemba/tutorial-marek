@@ -12,46 +12,35 @@
 
 package pl.unity.tutorial.marek.book.repository;
 
-import static org.springframework.util.Assert.notNull;
+import javax.persistence.EntityManager;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pl.unity.tutorial.marek.book.model.Book;
+import pl.unity.tutorial.marek.common.repository.AbstractRepository;
 
 
 @Repository
-public class BookEditRepository {
-
-	private final SessionFactory sessionFactory;
+public class BookEditRepository extends AbstractRepository<Book> {
 
 	@Autowired
-	public BookEditRepository(SessionFactory sessionFactory) {
+	public BookEditRepository(EntityManager entityManager) {
 
-		notNull(sessionFactory, "SessionFactory should be not null");
-		this.sessionFactory = sessionFactory;
+		super(entityManager, Book.class);
 
 	}
 
 	public Book saveOrUpdateBook(Book book) {
 
-		Session session = sessionFactory.openSession();
-		session.saveOrUpdate(book);
-		session.flush();
-		session.close();
+		saveOrUpdate(book);
 		return book;
 
 	}
 
-	public void deleteBook(Long id) {
+	public void deleteBook(Book book) {
 
-		Session session = sessionFactory.openSession();
-		Book book = (Book)session.load(Book.class,id);
-		session.delete(book);
-		session.flush();
-		session.close();
+		delete(book);
 
 	}
 }

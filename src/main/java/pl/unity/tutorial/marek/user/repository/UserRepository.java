@@ -12,51 +12,37 @@
 
 package pl.unity.tutorial.marek.user.repository;
 
-import static org.springframework.util.Assert.notNull;
-
 import java.util.List;
+import java.util.Optional;
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
+import javax.persistence.EntityManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import pl.unity.tutorial.marek.common.repository.AbstractRepository;
 import pl.unity.tutorial.marek.user.model.User;
 
 
 @Repository
-public class UserRepository {
-
-	private final SessionFactory sessionFactory;
+public class UserRepository extends AbstractRepository<User> {
 
 	@Autowired
-	public UserRepository(SessionFactory sessionFactory) {
+	public UserRepository(EntityManager entityManager) {
 
-		notNull(sessionFactory, "SessionFactory should be not null");
-		this.sessionFactory = sessionFactory;
+		super(entityManager, User.class);
 
 	}
 
-	public User getUserById(Long id) {
+	public Optional<User> findUserById(Long id) {
 
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(User.class)
-			.add(Restrictions.eq("id", id));
-		User user = (User) criteria.uniqueResult();
-		session.close();
-		return user;
+		return findById(id);
 
 	}
 
 	public List<User> getUserList() {
 
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(User.class);
-		List<User> userList = criteria.list();
-		session.close();
-		return userList;
+		return getList();
 
 	}
 }

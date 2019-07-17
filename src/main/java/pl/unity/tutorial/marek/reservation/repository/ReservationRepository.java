@@ -12,53 +12,46 @@
 
 package pl.unity.tutorial.marek.reservation.repository;
 
-import static org.springframework.util.Assert.notNull;
-
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import pl.unity.tutorial.marek.book.model.Book;
+import pl.unity.tutorial.marek.common.repository.AbstractRepository;
 import pl.unity.tutorial.marek.reservation.model.Reservation;
 
 
 @Repository
-public class ReservationRepository {
-
-	private final SessionFactory sessionFactory;
+public class ReservationRepository extends AbstractRepository<Reservation> {
 
 	@Autowired
-	public ReservationRepository(SessionFactory sessionFactory) {
+	public ReservationRepository(EntityManager entityManager) {
 
-		notNull(sessionFactory, "SessionFactory should be not null");
-		this.sessionFactory = sessionFactory;
+		super(entityManager, Reservation.class);
+
 	}
 
-	public Reservation getReservationByBook(Book book) {
 
-		Session session = sessionFactory.openSession();
+	public Optional<Reservation> findReservationByBook(Book book) {
 
-		Criteria criteria = session.createCriteria(Reservation.class);
-		criteria.add(Restrictions.eq("book", book));
-		criteria.setMaxResults(1);
-		Reservation reservation = (Reservation) criteria.uniqueResult();
-		session.close();
-		return reservation;
+		Criteria criteria = getSession().
+			createCriteria(Reservation.class)
+			.add(Restrictions.eq("book", book))
+			.setMaxResults(1);
+
+		return findByCriteria(criteria);
+
 	}
 
 	public List<Reservation> getReservationList() {
 
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Reservation.class);
-		criteria.createAlias("book", "bk");
-		criteria.add(Restrictions.eq("bk.available", false));
-		List<Reservation> reservationList = criteria.list();
-		session.close();
-		return reservationList;
+		return getList();
+
 	}
 }

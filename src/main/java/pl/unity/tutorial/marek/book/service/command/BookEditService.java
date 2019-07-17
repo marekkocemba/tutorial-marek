@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import pl.unity.tutorial.marek.book.model.Book;
 import pl.unity.tutorial.marek.book.repository.BookEditRepository;
+import pl.unity.tutorial.marek.book.repository.BookRepository;
 import pl.unity.tutorial.marek.book.service.query.BookDto;
 
 
@@ -28,12 +29,16 @@ import pl.unity.tutorial.marek.book.service.query.BookDto;
 public class BookEditService {
 
 	private final BookEditRepository bookEditRepository;
+	private final BookRepository bookRepository;
 
 	@Autowired
-	public BookEditService(BookEditRepository bookEditRepository) {
+	public BookEditService(BookEditRepository bookEditRepository, BookRepository bookRepository) {
 
 		notNull(bookEditRepository, "BookEditRepository should be not null");
+		notNull(bookRepository, "BookRepository should be not null");
+
 		this.bookEditRepository = bookEditRepository;
+		this.bookRepository = bookRepository;
 	}
 
 	public BookDto saveOrUpdateBook(BookForm bookForm) {
@@ -48,7 +53,10 @@ public class BookEditService {
 
 	public void deleteBook(Long id) {
 
-		bookEditRepository.deleteBook(id);
+		Book book = bookRepository.findBookById(id)
+			.orElseThrow(() -> new RuntimeException("No book found by id: "+id));
+
+		bookEditRepository.deleteBook(book);
 
 	}
 }

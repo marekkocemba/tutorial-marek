@@ -42,7 +42,8 @@ public class UserService {
 
 	public UserDto getUserById(Long id) {
 
-		User user = userRepository.getUserById(id);
+		User user = userRepository.findUserById(id)
+			.orElseThrow(() -> new RuntimeException("No user found by id: " + id));
 		return toUserDto(user);
 
 	}

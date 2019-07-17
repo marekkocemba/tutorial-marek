@@ -20,6 +20,8 @@ import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 import static pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum.OPOWIADANIE;
 
+import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -28,6 +30,7 @@ import org.mockito.MockitoAnnotations;
 
 import pl.unity.tutorial.marek.book.model.Book;
 import pl.unity.tutorial.marek.book.repository.BookEditRepository;
+import pl.unity.tutorial.marek.book.repository.BookRepository;
 import pl.unity.tutorial.marek.book.service.query.BookDto;
 
 
@@ -38,6 +41,9 @@ public class BookEditServiceTest {
 
 	@Mock
 	private BookEditRepository bookEditRepository;
+
+	@Mock
+	private BookRepository bookRepository;
 
 	private BookForm bookForm = new BookForm();
 
@@ -85,12 +91,16 @@ public class BookEditServiceTest {
 	@Test
 	public void deleteBook_shouldDeleteBook() {
 
+		//before
+
+		when(bookRepository.findBookById(1L)).thenReturn(Optional.of(book));
+
 		//when
 
 		bookEditService.deleteBook(1L);
 
 		//then
 
-		verify(bookEditRepository, times(1)).deleteBook(1L);
+		verify(bookEditRepository, times(1)).deleteBook(book);
 	}
 }

@@ -18,6 +18,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -57,7 +58,7 @@ public class UserServiceTest {
 
 		//before
 
-		when(userRepository.getUserById(1L)).thenReturn(user);
+		when(userRepository.findUserById(1L)).thenReturn(Optional.of(user));
 
 		//when
 

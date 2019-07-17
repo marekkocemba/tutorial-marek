@@ -12,13 +12,12 @@
 
 package pl.unity.tutorial.marek.book.repository;
 
-import static org.springframework.util.Assert.notNull;
-
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
 
 import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,38 +25,29 @@ import org.springframework.stereotype.Repository;
 
 import pl.unity.tutorial.marek.book.model.Book;
 import pl.unity.tutorial.marek.book.service.query.BookQueryForm;
+import pl.unity.tutorial.marek.common.repository.AbstractRepository;
 
 
 @Repository
-public class BookRepository {
+public class BookRepository extends AbstractRepository<Book> {
 
-	private final SessionFactory sessionFactory;
-
-	//TODO: wspolna klasa bazowa
 	@Autowired
-	BookRepository(SessionFactory sessionFactory) {
+	public BookRepository(EntityManager entityManager) {
 
-		notNull(sessionFactory, "SessionFactory should be not null");
-		this.sessionFactory = sessionFactory;
+		super(entityManager, Book.class);
 
 	}
 
-	public Book getBookById(Long id) {
+	public Optional<Book> findBookById(Long id) {
 
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Book.class)
-			.add(Restrictions.eq("id", id));
-		Book book = (Book) criteria.uniqueResult();
-		session.close();
-
-		return book;
+		return findById(id);
 
 	}
 
 	public List<Book> getBookList(BookQueryForm bookQueryForm) {
 
-		Session session = sessionFactory.openSession();
-		Criteria criteria = session.createCriteria(Book.class);
+		Criteria criteria = getSession().createCriteria(Book.class);
+
 		if (bookQueryForm.getTitle() != null && !bookQueryForm.getTitle().isBlank()) {
 			criteria.add(Restrictions.like("title", bookQueryForm.getTitle(), MatchMode.ANYWHERE).ignoreCase());
 		}
@@ -76,10 +66,7 @@ public class BookRepository {
 		if (Boolean.TRUE.equals(bookQueryForm.getAvailable())) {
 			criteria.add(Restrictions.eq("available", bookQueryForm.getAvailable()));
 		}
-		List<Book> bookList = criteria.list();
-		session.close();
-
-		return bookList;
+		return (List<Book>) getListByCriteria(criteria);
 
 	}
 }

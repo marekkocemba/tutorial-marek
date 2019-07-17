@@ -38,7 +38,8 @@ public class BookService {
 
 	public BookDto getBookById(Long id) {
 
-		Book book = bookRepository.getBookById(id);
+		Book book = bookRepository.findBookById(id)
+			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + id));
 		return toBookDto(book);
 	}
 

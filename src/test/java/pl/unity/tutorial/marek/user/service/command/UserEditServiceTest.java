@@ -18,6 +18,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
+import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -26,6 +28,7 @@ import org.mockito.MockitoAnnotations;
 
 import pl.unity.tutorial.marek.user.model.User;
 import pl.unity.tutorial.marek.user.repository.UserEditRepository;
+import pl.unity.tutorial.marek.user.repository.UserRepository;
 import pl.unity.tutorial.marek.user.service.query.UserDto;
 
 
@@ -36,6 +39,9 @@ public class UserEditServiceTest {
 
 	@Mock
 	private UserEditRepository userEditRepository;
+
+	@Mock
+	private UserRepository userRepository;
 
 	private UserForm userForm = new UserForm();
 
@@ -82,12 +88,16 @@ public class UserEditServiceTest {
 	@Test
 	public void deleteBook_shouldDeleteBook() {
 
+		//before
+
+		when(userRepository.findUserById(1L)).thenReturn(Optional.of(user));
+
 		//when
 
 		userEditService.deleteUser(1L);
 
 		//then
 
-		verify(userEditRepository, times(1)).deleteUser(1L);
+		verify(userEditRepository, times(1)).deleteUser(user);
 	}
 }

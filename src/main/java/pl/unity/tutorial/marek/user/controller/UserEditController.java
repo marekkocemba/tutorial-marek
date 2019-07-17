@@ -46,6 +46,7 @@ class UserEditController {
 		notNull(userService, "UserService should be not null");
 		this.userEditService = userEditService;
 		this.userService = userService;
+
 	}
 
 	@GetMapping("/form")
@@ -53,6 +54,7 @@ class UserEditController {
 
 		model.addAttribute("user", new UserDto());
 		return "user_form";
+
 	}
 
 	@GetMapping("/form/{id}")
@@ -60,6 +62,7 @@ class UserEditController {
 
 		model.addAttribute("user", userService.getUserById(id));
 		return "user_form";
+
 	}
 
 	@PostMapping
@@ -70,6 +73,7 @@ class UserEditController {
 		}
 		userEditService.saveOrUpdateUser(userForm);
 		return "user_success";
+
 	}
 
 	//obejscie bo nie jest obsługiwana metoda DELETE powinno byc @DeleteMapping("/{id}")
@@ -78,5 +82,6 @@ class UserEditController {
 
 		userEditService.deleteUser(id);
 		return "user_success";
+
 	}
 }

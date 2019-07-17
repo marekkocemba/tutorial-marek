@@ -41,6 +41,7 @@ public class ReservationController {
 	private String getReservationsWhereBooksNotReturned(Model model) {
 
 		model.addAttribute("reservationList", reservationService.getReservationsWhereBooksNotReturned());
+
 		return "reservation_list";
 
 	}

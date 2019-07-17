@@ -17,6 +17,8 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import static pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum.OPOWIADANIE;
 
+import java.util.Optional;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -56,7 +58,7 @@ public class BookServiceTest {
 
 		//before
 
-		when(bookRepository.getBookById(1L)).thenReturn(book);
+		when(bookRepository.findBookById(1L)).thenReturn(Optional.of(book));
 
 		//when
 
@@ -69,17 +71,6 @@ public class BookServiceTest {
 		assertEquals(result.getAuthor(), "testAuthor");
 		assertEquals(result.getBookCategory(), OPOWIADANIE);
 		assertTrue(result.getAvailable());
-	}
 
-	//	@Test
-	//	public void deleteBook_shouldDeleteBook() {
-	//
-	//		//when
-	//
-	//		bookEditService.deleteBook(1L);
-	//
-	//		//then
-	//
-	//		verify(bookEditRepository, times(1)).deleteBook(1L);
-	//	}
+	}
 }
