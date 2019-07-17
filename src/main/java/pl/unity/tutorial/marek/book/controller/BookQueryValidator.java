@@ -33,6 +33,7 @@ public class BookQueryValidator implements Validator {
 	public void validate(Object object, Errors errors) {
 
 		BookQueryForm bookQuery = (BookQueryForm) object;
+
 		if (isYearFromAfterYearTo(bookQuery)) {
 			errors.rejectValue("yearFrom", null, "should be before or equal to yearTo");
 		}

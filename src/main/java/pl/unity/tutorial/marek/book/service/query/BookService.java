@@ -34,6 +34,7 @@ public class BookService {
 	public BookService(BookRepository bookRepository) {
 
 		this.bookRepository = bookRepository;
+
 	}
 
 	public BookDto getBookById(Long id) {
@@ -41,6 +42,7 @@ public class BookService {
 		Book book = bookRepository.findBookById(id)
 			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + id));
 		return toBookDto(book);
+
 	}
 
 	public List<BookDto> getBookList(BookQueryForm bookQueryForm) {
@@ -49,5 +51,6 @@ public class BookService {
 			.stream()
 			.map(BookMapper::toBookDto)
 			.collect(Collectors.toList());
+
 	}
 }

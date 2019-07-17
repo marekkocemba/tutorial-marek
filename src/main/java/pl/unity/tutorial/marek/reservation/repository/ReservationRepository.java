@@ -37,7 +37,6 @@ public class ReservationRepository extends AbstractRepository<Reservation> {
 
 	}
 
-
 	public Optional<Reservation> findReservationByBook(Book book) {
 
 		Criteria criteria = getSession().

@@ -33,6 +33,7 @@ public class ReservationController {
 	private ReservationController(ReservationService reservationService) {
 
 		notNull(reservationService, "ReservationService should be not null");
+
 		this.reservationService = reservationService;
 
 	}

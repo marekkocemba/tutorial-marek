@@ -52,6 +52,7 @@ class BookController {
 	private String getBookById(@PathVariable("id") Long id, Model model) {
 
 		model.addAttribute("book", bookService.getBookById(id));
+
 		return "book_details";
 
 	}
@@ -62,11 +63,13 @@ class BookController {
 		if (bookQueryForm != null) {
 			bookQueryValidator.validate(bookQueryForm, bindingResult);
 		}
+
 		if (bindingResult.hasErrors()) {
 			return "book_list";
 		}
 
 		model.addAttribute("bookList", bookService.getBookList(bookQueryForm));
+
 		return "book_list";
 
 	}

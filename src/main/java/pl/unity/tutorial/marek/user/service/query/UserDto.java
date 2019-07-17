@@ -47,26 +47,31 @@ public class UserDto {
 	public Long getId() {
 
 		return id;
+
 	}
 
 	public String getName() {
 
 		return name;
+
 	}
 
 	public String getSurname() {
 
 		return surname;
+
 	}
 
 	public String getTelephone() {
 
 		return telephone;
+
 	}
 
 	public String getEmail() {
 
 		return email;
+
 	}
 
 }

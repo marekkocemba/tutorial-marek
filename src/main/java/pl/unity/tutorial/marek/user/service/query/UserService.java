@@ -36,6 +36,7 @@ public class UserService {
 	public UserService(UserRepository userRepository) {
 
 		notNull(userRepository, "UserRepository should be not null");
+
 		this.userRepository = userRepository;
 
 	}
@@ -44,6 +45,7 @@ public class UserService {
 
 		User user = userRepository.findUserById(id)
 			.orElseThrow(() -> new RuntimeException("No user found by id: " + id));
+
 		return toUserDto(user);
 
 	}
@@ -61,6 +63,7 @@ public class UserService {
 
 		Random randomGenerator = new Random();
 		List<User> userList = userRepository.getUserList();
+
 		return userList.get(randomGenerator.nextInt(userList.size()));
 
 	}

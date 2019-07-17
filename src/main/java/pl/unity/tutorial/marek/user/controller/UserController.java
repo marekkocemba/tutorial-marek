@@ -34,6 +34,7 @@ class UserController {
 	private UserController(UserService userService) {
 
 		notNull(userService, "UserService should be not null");
+
 		this.userService = userService;
 
 	}
@@ -42,6 +43,7 @@ class UserController {
 	private String getUserById(@PathVariable("id") Long id, Model model) {
 
 		model.addAttribute("user", userService.getUserById(id));
+
 		return "user_details";
 
 	}
@@ -50,6 +52,7 @@ class UserController {
 	private String getUserList(Model model) {
 
 		model.addAttribute("userList", userService.getUserList());
+
 		return "user_list";
 
 	}

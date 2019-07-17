@@ -29,6 +29,7 @@ import pl.unity.tutorial.marek.book.service.query.BookDto;
 public class BookEditService {
 
 	private final BookEditRepository bookEditRepository;
+
 	private final BookRepository bookRepository;
 
 	@Autowired
@@ -39,6 +40,7 @@ public class BookEditService {
 
 		this.bookEditRepository = bookEditRepository;
 		this.bookRepository = bookRepository;
+
 	}
 
 	public BookDto saveOrUpdateBook(BookForm bookForm) {
@@ -46,7 +48,9 @@ public class BookEditService {
 		if (bookForm.getAvailable() == null) {
 			bookForm.setAvailable(true);
 		}
+
 		Book persistedBook = bookEditRepository.saveOrUpdateBook(toBook(bookForm));
+
 		return toBookDto(persistedBook);
 
 	}
@@ -54,7 +58,7 @@ public class BookEditService {
 	public void deleteBook(Long id) {
 
 		Book book = bookRepository.findBookById(id)
-			.orElseThrow(() -> new RuntimeException("No book found by id: "+id));
+			.orElseThrow(() -> new RuntimeException("No book found by id: " + id));
 
 		bookEditRepository.deleteBook(book);
 

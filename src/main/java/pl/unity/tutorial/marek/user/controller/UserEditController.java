@@ -37,6 +37,7 @@ import pl.unity.tutorial.marek.user.service.query.UserService;
 class UserEditController {
 
 	private final UserEditService userEditService;
+
 	private final UserService userService;
 
 	@Autowired
@@ -53,6 +54,7 @@ class UserEditController {
 	private String getNewUserForm(Model model) {
 
 		model.addAttribute("user", new UserDto());
+
 		return "user_form";
 
 	}
@@ -61,6 +63,7 @@ class UserEditController {
 	private String getEditUserForm(@PathVariable("id") Long id, Model model) {
 
 		model.addAttribute("user", userService.getUserById(id));
+
 		return "user_form";
 
 	}
@@ -72,6 +75,7 @@ class UserEditController {
 			return "user_form";
 		}
 		userEditService.saveOrUpdateUser(userForm);
+
 		return "user_success";
 
 	}
@@ -81,6 +85,7 @@ class UserEditController {
 	private String deleteBook(@PathVariable("id") Long id) {
 
 		userEditService.deleteUser(id);
+
 		return "user_success";
 
 	}

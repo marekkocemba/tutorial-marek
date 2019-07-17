@@ -31,6 +31,7 @@ import org.springframework.util.Assert;
 public abstract class AbstractRepository<T> implements Repository {
 
 	private final EntityManager entityManager;
+
 	private final Class<T> entityClass;
 
 	public AbstractRepository(EntityManager entityManager, Class<T> entityClass) {

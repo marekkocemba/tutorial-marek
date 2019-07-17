@@ -72,50 +72,60 @@ public class Reservation {
 	public Long getId() {
 
 		return id;
+
 	}
 
 	public void setId(Long id) {
 
 		this.id = id;
+
 	}
 
 	public ZonedDateTime getDateReservationStart() {
 
 		return dateReservationStart;
+
 	}
 
 	public void setDateReservationStart(ZonedDateTime dateReservationStart) {
 
 		this.dateReservationStart = dateReservationStart;
+
 	}
 
 	public ZonedDateTime getDateReservationEnd() {
 
 		return dateReservationEnd;
+
 	}
 
 	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
 
 		this.dateReservationEnd = dateReservationEnd;
+
 	}
 
 	public User getUser() {
 
 		return user;
+
 	}
 
 	public void setUser(User user) {
 
 		this.user = user;
+
 	}
 
 	public Book getBook() {
 
 		return book;
+
 	}
 
 	public void setBook(Book book) {
 
 		this.book = book;
+
 	}
 }

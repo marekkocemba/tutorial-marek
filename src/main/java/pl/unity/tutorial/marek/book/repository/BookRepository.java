@@ -51,21 +51,27 @@ public class BookRepository extends AbstractRepository<Book> {
 		if (bookQueryForm.getTitle() != null && !bookQueryForm.getTitle().isBlank()) {
 			criteria.add(Restrictions.like("title", bookQueryForm.getTitle(), MatchMode.ANYWHERE).ignoreCase());
 		}
+
 		if (bookQueryForm.getAuthor() != null && !bookQueryForm.getAuthor().isBlank()) {
 			criteria.add(Restrictions.like("author", bookQueryForm.getAuthor(), MatchMode.ANYWHERE).ignoreCase());
 		}
+
 		if (bookQueryForm.getYearFrom() != null) {
 			criteria.add(Restrictions.ge("year", bookQueryForm.getYearFrom()));
 		}
+
 		if (bookQueryForm.getYearTo() != null) {
 			criteria.add(Restrictions.le("year", bookQueryForm.getYearTo()));
 		}
+
 		if (bookQueryForm.getBookCategoryList() != null && !bookQueryForm.getBookCategoryList().isEmpty()) {
 			criteria.add(Restrictions.in("bookCategory", bookQueryForm.getBookCategoryList()));
 		}
+
 		if (Boolean.TRUE.equals(bookQueryForm.getAvailable())) {
 			criteria.add(Restrictions.eq("available", bookQueryForm.getAvailable()));
 		}
+
 		return (List<Book>) getListByCriteria(criteria);
 
 	}

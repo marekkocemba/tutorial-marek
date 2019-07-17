@@ -71,6 +71,7 @@ public class UserServiceTest {
 		assertEquals(result.getSurname(), "testSurname");
 		assertEquals(result.getEmail(), "test@gmail.com");
 		assertEquals(result.getTelephone(), "000 000");
+
 	}
 
 	@Test
@@ -93,6 +94,7 @@ public class UserServiceTest {
 		assertEquals(result.getSurname(), "testSurname");
 		assertEquals(result.getEmail(), "test@gmail.com");
 		assertEquals(result.getTelephone(), "000 000");
+
 	}
 
 	@Test
@@ -113,5 +115,6 @@ public class UserServiceTest {
 		assertEquals(result.getSurname(), "testSurname");
 		assertEquals(result.getEmail(), "test@gmail.com");
 		assertEquals(result.getTelephone(), "000 000");
+
 	}
 }

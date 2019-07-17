@@ -34,6 +34,7 @@ public class BookEditRepository extends AbstractRepository<Book> {
 	public Book saveOrUpdateBook(Book book) {
 
 		saveOrUpdate(book);
+
 		return book;
 
 	}

@@ -30,6 +30,7 @@ import pl.unity.tutorial.marek.user.repository.UserEditRepository;
 public class InitialData {
 
 	private final BookEditRepository bookEditRepository;
+
 	private final UserEditRepository userEditRepository;
 
 	@Autowired

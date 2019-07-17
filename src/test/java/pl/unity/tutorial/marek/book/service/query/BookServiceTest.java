@@ -66,7 +66,6 @@ public class BookServiceTest {
 
 		//then
 
-		//assertEquals(result.getId(),1L);
 		assertEquals(result.getTitle(), "testTitle");
 		assertEquals(result.getAuthor(), "testAuthor");
 		assertEquals(result.getBookCategory(), OPOWIADANIE);

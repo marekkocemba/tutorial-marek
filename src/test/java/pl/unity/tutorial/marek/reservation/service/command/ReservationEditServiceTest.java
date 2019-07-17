@@ -73,9 +73,10 @@ public class ReservationEditServiceTest {
 
 		MockitoAnnotations.initMocks(this);
 
-		bookDto = new BookDto(1L,null,null,null,null, null);
+		bookDto = new BookDto(1L, null, null, null, null, null);
 		book.setId(1L);
 		user.setId(1L);
+
 	}
 
 	@Test
@@ -98,6 +99,7 @@ public class ReservationEditServiceTest {
 		assertEquals(result.getUser().getId(), new Long(1L));
 		assertTrue(result.getBook() != null);
 		assertEquals(result.getBook().getId(), new Long(1L));
+
 	}
 
 	@Test

@@ -40,60 +40,72 @@ public class BookForm {
 	public Long getId() {
 
 		return id;
+
 	}
 
 	public void setId(Long id) {
 
 		this.id = id;
+
 	}
 
 	public String getTitle() {
 
 		return title;
+
 	}
 
 	public void setTitle(String title) {
 
 		this.title = title;
+
 	}
 
 	public String getAuthor() {
 
 		return author;
+
 	}
 
 	public void setAuthor(String author) {
 
 		this.author = author;
+
 	}
 
 	public BookCategoryEnum getBookCategory() {
 
 		return bookCategory;
+
 	}
 
 	public void setBookCategory(BookCategoryEnum bookCategory) {
 
 		this.bookCategory = bookCategory;
+
 	}
 
 	public Integer getYear() {
 
 		return year;
+
 	}
 
 	public void setYear(Integer year) {
 
 		this.year = year;
+
 	}
 
 	public Boolean getAvailable() {
 
 		return available;
+
 	}
 
 	public void setAvailable(Boolean available) {
 
 		this.available = available;
+
 	}
 }

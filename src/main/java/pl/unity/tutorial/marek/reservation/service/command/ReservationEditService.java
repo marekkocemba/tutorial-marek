@@ -66,10 +66,14 @@ public class ReservationEditService {
 	public ReservationDto addReservationByBookAndRandomUser(Long bookId) {
 
 		User randomUser = userService.getUserRandom();
+
 		Book book = bookRepository.findBookById(bookId)
 			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + bookId));
+
 		book.setAvailable(false);
+
 		bookEditRepository.saveOrUpdateBook(book);
+
 		Reservation persistedReservation = reservationEditRepository.saveOrUpdateReservation(
 			new Reservation(randomUser, book, ZonedDateTime.now()));
 
@@ -81,10 +85,12 @@ public class ReservationEditService {
 
 		Book book = bookRepository.findBookById(bookId)
 			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + bookId));
+
 		book.setAvailable(true);
 
 		Reservation reservation = reservationRepository.findReservationByBook(book)
-			.orElseThrow(() -> new RuntimeException("No Reservation found by  found by given book id: " + bookId));;
+			.orElseThrow(() -> new RuntimeException("No Reservation found by  found by given book id: " + bookId));
+
 		reservation.setDateReservationEnd(ZonedDateTime.now());
 
 		bookEditRepository.saveOrUpdateBook(book);

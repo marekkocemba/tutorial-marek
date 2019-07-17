@@ -31,12 +31,15 @@ public class ReservationService {
 	public ReservationService(ReservationRepository reservationRepository) {
 
 		this.reservationRepository = reservationRepository;
+
 	}
 
 	public List<ReservationDto> getReservationsWhereBooksNotReturned() {
+
 		return reservationRepository.getReservationList()
 			.stream()
 			.map(ReservationMapper::toReservationDto)
 			.collect(Collectors.toList());
 	}
+
 }

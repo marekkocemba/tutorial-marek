@@ -58,20 +58,24 @@ public class ReservationDto {
 	public ZonedDateTime getDateReservationStart() {
 
 		return dateReservationStart;
+
 	}
 
 	public ZonedDateTime getDateReservationEnd() {
 
 		return dateReservationEnd;
+
 	}
 
 	public UserDto getUser() {
 
 		return user;
+
 	}
 
 	public BookDto getBook() {
 
 		return book;
+
 	}
 }

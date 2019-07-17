@@ -63,6 +63,7 @@ public class UserEditServiceTest {
 		userForm.setSurname("testSurname");
 		userForm.setEmail("test@gmail.com");
 		userForm.setTelephone("000 000");
+
 	}
 
 	@Test
@@ -83,6 +84,7 @@ public class UserEditServiceTest {
 		assertEquals(result.getSurname(), "testSurname");
 		assertEquals(result.getEmail(), "test@gmail.com");
 		assertEquals(result.getTelephone(), "000 000");
+
 	}
 
 	@Test
@@ -99,5 +101,6 @@ public class UserEditServiceTest {
 		//then
 
 		verify(userEditRepository, times(1)).deleteUser(user);
+
 	}
 }

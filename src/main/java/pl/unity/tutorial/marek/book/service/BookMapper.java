@@ -28,8 +28,11 @@ public class BookMapper {
 		book.setBookCategory(bookDto.getBookCategory());
 		book.setYear(bookDto.getYear());
 		book.setAvailable(bookDto.getAvailable());
+
 		return book;
+
 	}
+
 	public static Book toBook(BookForm bookform) {
 
 		Book book = new Book();
@@ -39,11 +42,14 @@ public class BookMapper {
 		book.setBookCategory(bookform.getBookCategory());
 		book.setYear(bookform.getYear());
 		book.setAvailable(bookform.getAvailable());
+
 		return book;
+
 	}
+
 	public static BookDto toBookDto(Book book) {
 
-		return new BookDto(book.getId(),book.getTitle(),book.getAuthor(),book.getBookCategory(), book.getYear(), book.getAvailable());
+		return new BookDto(book.getId(), book.getTitle(), book.getAuthor(), book.getBookCategory(), book.getYear(), book.getAvailable());
 
 	}
 }

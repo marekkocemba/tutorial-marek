@@ -54,6 +54,7 @@ class BookEditController {
 	private String getNewBookForm(Model model) {
 
 		model.addAttribute("book", new BookDto());
+
 		return "book_form";
 
 	}
@@ -62,6 +63,7 @@ class BookEditController {
 	private String getEditBookForm(@PathVariable("id") Long id, Model model) {
 
 		model.addAttribute("book", bookService.getBookById(id));
+
 		return "book_form";
 
 	}
@@ -72,7 +74,9 @@ class BookEditController {
 		if (result.hasErrors()) {
 			return "book_form";
 		}
+
 		bookEditService.saveOrUpdateBook(bookForm);
+
 		return "book_success";
 
 	}
@@ -82,6 +86,7 @@ class BookEditController {
 	private String deleteBook(@PathVariable("id") Long id) {
 
 		bookEditService.deleteBook(id);
+
 		return "book_success";
 
 	}

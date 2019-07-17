@@ -29,6 +29,7 @@ import pl.unity.tutorial.marek.user.service.query.UserDto;
 public class UserEditService {
 
 	private final UserEditRepository userEditRepository;
+
 	private final UserRepository userRepository;
 
 	@Autowired
@@ -45,6 +46,7 @@ public class UserEditService {
 	public UserDto saveOrUpdateUser(UserForm userForm) {
 
 		User persistedUser = userEditRepository.saveOrUpdateUser(toUser(userForm));
+
 		return toUserDto(persistedUser);
 
 	}
@@ -53,6 +55,7 @@ public class UserEditService {
 
 		User user = userRepository.findUserById(id)
 			.orElseThrow(() -> new RuntimeException("No user found by id: " + id));
+
 		userEditRepository.deleteUser(user);
 
 	}
