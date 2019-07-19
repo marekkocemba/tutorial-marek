@@ -12,6 +12,7 @@
 
 package pl.unity.tutorial.marek.book.service.query;
 
+import static org.springframework.util.Assert.notNull;
 import static pl.unity.tutorial.marek.book.service.BookMapper.toBookDto;
 
 import java.util.List;
@@ -29,8 +30,11 @@ import pl.unity.tutorial.marek.book.service.BookMapper;
 public class BookService {
 
 	private final BookRepository bookRepository;
+
 	@Autowired
-	public BookService(BookRepository bookRepository) {
+	private BookService(BookRepository bookRepository) {
+
+		notNull(bookRepository, "bookRepository must not be null");
 
 		this.bookRepository = bookRepository;
 	}

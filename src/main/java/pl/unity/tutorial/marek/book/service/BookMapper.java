@@ -40,7 +40,6 @@ public class BookMapper {
 		book.setAuthor(bookform.getAuthor());
 		book.setBookCategory(bookform.getBookCategory());
 		book.setYear(bookform.getYear());
-		book.setAvailable(bookform.getAvailable());
 
 		return book;
 	}

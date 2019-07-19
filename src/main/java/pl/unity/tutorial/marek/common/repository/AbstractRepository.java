@@ -21,13 +21,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.data.repository.Repository;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 
 @Transactional
-@EnableTransactionManagement
 public abstract class AbstractRepository<T> implements Repository {
 
 	private final EntityManager entityManager;

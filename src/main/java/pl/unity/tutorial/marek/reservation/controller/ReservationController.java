@@ -25,7 +25,7 @@ import pl.unity.tutorial.marek.reservation.service.query.ReservationService;
 
 @Controller
 @RequestMapping("/reservations")
-public class ReservationController {
+class ReservationController {
 
 	private final ReservationService reservationService;
 

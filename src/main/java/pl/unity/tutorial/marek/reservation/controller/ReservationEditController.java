@@ -27,7 +27,7 @@ import pl.unity.tutorial.marek.reservation.service.query.ReservationDto;
 
 @Controller
 @RequestMapping("/reservations")
-public class ReservationEditController {
+class ReservationEditController {
 
 	private final ReservationEditService reservationEditService;
 

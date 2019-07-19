@@ -20,7 +20,7 @@ import pl.unity.tutorial.marek.book.service.query.BookQueryForm;
 
 
 @Component
-public class BookQueryValidator implements Validator {
+class BookQueryValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {

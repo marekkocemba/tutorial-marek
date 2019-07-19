@@ -41,7 +41,7 @@ public class ReservationEditService {
 	private final BookEditRepository bookEditRepository;
 
 	@Autowired
-	public ReservationEditService(ReservationEditRepository reservationEditRepository,
+	private ReservationEditService(ReservationEditRepository reservationEditRepository,
 		ReservationRepository reservationRepository, UserService userService,
 		BookRepository bookRepository, BookEditRepository bookEditRepository) {
 

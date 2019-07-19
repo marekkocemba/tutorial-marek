@@ -32,7 +32,7 @@ public class UserEditService {
 	private final UserRepository userRepository;
 
 	@Autowired
-	public UserEditService(UserEditRepository userEditRepository, UserRepository userRepository) {
+	private UserEditService(UserEditRepository userEditRepository, UserRepository userRepository) {
 
 		notNull(userEditRepository, "UserEditRepository should be not null");
 		notNull(userRepository, "UserRepository should be not null");

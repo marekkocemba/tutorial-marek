@@ -69,19 +69,9 @@ public class Reservation {
 		return id;
 	}
 
-	public void setId(Long id) {
-
-		this.id = id;
-	}
-
 	public ZonedDateTime getDateReservationStart() {
 
 		return dateReservationStart;
-	}
-
-	public void setDateReservationStart(ZonedDateTime dateReservationStart) {
-
-		this.dateReservationStart = dateReservationStart;
 	}
 
 	public ZonedDateTime getDateReservationEnd() {
@@ -89,19 +79,9 @@ public class Reservation {
 		return dateReservationEnd;
 	}
 
-	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
-
-		this.dateReservationEnd = dateReservationEnd;
-	}
-
 	public User getUser() {
 
 		return user;
-	}
-
-	public void setUser(User user) {
-
-		this.user = user;
 	}
 
 	public Book getBook() {
@@ -109,8 +89,7 @@ public class Reservation {
 		return book;
 	}
 
-	public void setBook(Book book) {
-
-		this.book = book;
+	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
+		this.dateReservationEnd = 	dateReservationEnd;
 	}
 }

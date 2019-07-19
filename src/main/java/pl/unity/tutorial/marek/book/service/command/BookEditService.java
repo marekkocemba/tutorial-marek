@@ -32,7 +32,7 @@ public class BookEditService {
 	private final BookRepository bookRepository;
 
 	@Autowired
-	BookEditService(BookEditRepository bookEditRepository, BookRepository bookRepository) {
+	private BookEditService(BookEditRepository bookEditRepository, BookRepository bookRepository) {
 
 		notNull(bookEditRepository, "BookEditRepository should be not null");
 		notNull(bookRepository, "BookRepository should be not null");
@@ -43,16 +43,15 @@ public class BookEditService {
 
 	public BookDto saveOrUpdateBook(BookForm bookForm) {
 
-		//asercje
+		//asercje nna
 		notNull(bookForm, "bookForm must not be null");
 
-		if (bookForm.getAvailable() == null) {
-			bookForm.setAvailable(true);
-		}
+		Book book = toBook(bookForm);
 
-		Book persistedBook = bookEditRepository.saveOrUpdate(toBook(bookForm));
+		book.setAvailable(true);
+		bookEditRepository.saveOrUpdate(book);
 
-		return toBookDto(persistedBook);
+		return toBookDto(book);
 	}
 
 	public void deleteBook(Long id) {

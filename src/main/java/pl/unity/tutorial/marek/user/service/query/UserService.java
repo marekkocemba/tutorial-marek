@@ -33,7 +33,7 @@ public class UserService {
 	private final UserRepository userRepository;
 
 	@Autowired
-	public UserService(UserRepository userRepository) {
+	private UserService(UserRepository userRepository) {
 
 		notNull(userRepository, "UserRepository should be not null");
 

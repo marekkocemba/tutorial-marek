@@ -66,7 +66,7 @@ class BookEditController {
 	}
 
 	@PostMapping
-	private String saveOrUpdateBook(@Valid @ModelAttribute("book") BookForm bookForm, BindingResult result, Model model) {
+	private String saveOrUpdateBook(@Valid @ModelAttribute("book") BookForm bookForm, BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "book_form";
