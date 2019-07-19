@@ -47,7 +47,6 @@ class BookEditController {
 
 		this.bookEditService = bookEditService;
 		this.bookService = bookService;
-
 	}
 
 	@GetMapping("/form")
@@ -56,7 +55,6 @@ class BookEditController {
 		model.addAttribute("book", new BookDto());
 
 		return "book_form";
-
 	}
 
 	@GetMapping("/form/{id}")
@@ -65,7 +63,6 @@ class BookEditController {
 		model.addAttribute("book", bookService.getBookById(id));
 
 		return "book_form";
-
 	}
 
 	@PostMapping
@@ -78,7 +75,6 @@ class BookEditController {
 		bookEditService.saveOrUpdateBook(bookForm);
 
 		return "book_success";
-
 	}
 
 	//obejscie bo nie jest obsługiwana metoda DELETE powinno byc @DeleteMapping("/{id}")
@@ -88,6 +84,5 @@ class BookEditController {
 		bookEditService.deleteBook(id);
 
 		return "book_success";
-
 	}
 }

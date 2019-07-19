@@ -29,28 +29,24 @@ import pl.unity.tutorial.marek.book.service.BookMapper;
 public class BookService {
 
 	private final BookRepository bookRepository;
-
 	@Autowired
 	public BookService(BookRepository bookRepository) {
 
 		this.bookRepository = bookRepository;
-
 	}
 
 	public BookDto getBookById(Long id) {
 
-		Book book = bookRepository.findBookById(id)
+		Book book = bookRepository.findById(id)
 			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + id));
 		return toBookDto(book);
-
 	}
 
 	public List<BookDto> getBookList(BookQueryForm bookQueryForm) {
 
-		return bookRepository.getBookList(bookQueryForm)
+		return bookRepository.getList(bookQueryForm)
 			.stream()
 			.map(BookMapper::toBookDto)
 			.collect(Collectors.toList());
-
 	}
 }

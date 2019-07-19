@@ -18,15 +18,10 @@ import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
 public class BookDto {
 
 	private final Long id;
-
 	private final String title;
-
 	private final String author;
-
 	private final BookCategoryEnum bookCategory;
-
 	private final Integer year;
-
 	private final Boolean available;
 
 	public BookDto() {
@@ -37,7 +32,6 @@ public class BookDto {
 		this.bookCategory = null;
 		this.year = null;
 		this.available = null;
-
 	}
 
 	public BookDto(Long id, String title, String author, BookCategoryEnum bookCategory, Integer year, Boolean available) {
@@ -48,42 +42,35 @@ public class BookDto {
 		this.bookCategory = bookCategory;
 		this.year = year;
 		this.available = available;
-
 	}
 
 	public Long getId() {
 
 		return id;
-
 	}
 
 	public String getTitle() {
 
 		return title;
-
 	}
 
 	public String getAuthor() {
 
 		return author;
-
 	}
 
 	public BookCategoryEnum getBookCategory() {
 
 		return bookCategory;
-
 	}
 
 	public Integer getYear() {
 
 		return year;
-
 	}
 
 	public Boolean getAvailable() {
 
 		return available;
-
 	}
 }

@@ -37,7 +37,6 @@ import pl.unity.tutorial.marek.user.service.query.UserService;
 class UserEditController {
 
 	private final UserEditService userEditService;
-
 	private final UserService userService;
 
 	@Autowired
@@ -45,6 +44,7 @@ class UserEditController {
 
 		notNull(userEditService, "UserEditService should be not null");
 		notNull(userService, "UserService should be not null");
+
 		this.userEditService = userEditService;
 		this.userService = userService;
 
@@ -56,7 +56,6 @@ class UserEditController {
 		model.addAttribute("user", new UserDto());
 
 		return "user_form";
-
 	}
 
 	@GetMapping("/form/{id}")
@@ -65,7 +64,6 @@ class UserEditController {
 		model.addAttribute("user", userService.getUserById(id));
 
 		return "user_form";
-
 	}
 
 	@PostMapping
@@ -77,7 +75,6 @@ class UserEditController {
 		userEditService.saveOrUpdateUser(userForm);
 
 		return "user_success";
-
 	}
 
 	//obejscie bo nie jest obsługiwana metoda DELETE powinno byc @DeleteMapping("/{id}")
@@ -87,6 +84,5 @@ class UserEditController {
 		userEditService.deleteUser(id);
 
 		return "user_success";
-
 	}
 }

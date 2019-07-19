@@ -12,9 +12,6 @@
 
 package pl.unity.tutorial.marek.user.repository;
 
-import java.util.List;
-import java.util.Optional;
-
 import javax.persistence.EntityManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,18 +28,5 @@ public class UserRepository extends AbstractRepository<User> {
 	public UserRepository(EntityManager entityManager) {
 
 		super(entityManager, User.class);
-
-	}
-
-	public Optional<User> findUserById(Long id) {
-
-		return findById(id);
-
-	}
-
-	public List<User> getUserList() {
-
-		return getList();
-
 	}
 }

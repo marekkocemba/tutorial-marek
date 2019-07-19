@@ -35,13 +35,9 @@ import pl.unity.tutorial.marek.user.service.query.UserService;
 public class ReservationEditService {
 
 	private final ReservationEditRepository reservationEditRepository;
-
 	private final ReservationRepository reservationRepository;
-
 	private final UserService userService;
-
 	private final BookRepository bookRepository;
-
 	private final BookEditRepository bookEditRepository;
 
 	@Autowired
@@ -60,30 +56,28 @@ public class ReservationEditService {
 		this.userService = userService;
 		this.bookRepository = bookRepository;
 		this.bookEditRepository = bookEditRepository;
-
 	}
 
 	public ReservationDto addReservationByBookAndRandomUser(Long bookId) {
 
 		User randomUser = userService.getUserRandom();
 
-		Book book = bookRepository.findBookById(bookId)
+		Book book = bookRepository.findById(bookId)
 			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + bookId));
 
 		book.setAvailable(false);
 
-		bookEditRepository.saveOrUpdateBook(book);
+		bookEditRepository.saveOrUpdate(book);
 
-		Reservation persistedReservation = reservationEditRepository.saveOrUpdateReservation(
+		Reservation persistedReservation = reservationEditRepository.saveOrUpdate(
 			new Reservation(randomUser, book, ZonedDateTime.now()));
 
 		return toReservationDto(persistedReservation);
-
 	}
 
 	public void returnReservationByBook(Long bookId) {
 
-		Book book = bookRepository.findBookById(bookId)
+		Book book = bookRepository.findById(bookId)
 			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + bookId));
 
 		book.setAvailable(true);
@@ -93,8 +87,7 @@ public class ReservationEditService {
 
 		reservation.setDateReservationEnd(ZonedDateTime.now());
 
-		bookEditRepository.saveOrUpdateBook(book);
-		reservationEditRepository.saveOrUpdateReservation(reservation);
-
+		bookEditRepository.saveOrUpdate(book);
+		reservationEditRepository.saveOrUpdate(reservation);
 	}
 }

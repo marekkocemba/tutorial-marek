@@ -36,7 +36,7 @@ import pl.unity.tutorial.marek.user.model.User;
 @Access(AccessType.FIELD)
 public class Reservation {
 
-	public Reservation() {
+	protected Reservation() {
 
 	}
 
@@ -48,84 +48,69 @@ public class Reservation {
 		this.user = user;
 		this.book = book;
 		this.dateReservationStart = dateReservationStart;
-
 	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	@Column(name = "date_reservation_start")
 	private ZonedDateTime dateReservationStart;
-
 	@Column(name = "date_reservation_end")
 	private ZonedDateTime dateReservationEnd;
-
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
-
 	@ManyToOne
-	@JoinColumn(name = "book_id")
+	@JoinColumn(name = "book_id", nullable = false)
 	private Book book;
 
 	public Long getId() {
 
 		return id;
-
 	}
 
 	public void setId(Long id) {
 
 		this.id = id;
-
 	}
 
 	public ZonedDateTime getDateReservationStart() {
 
 		return dateReservationStart;
-
 	}
 
 	public void setDateReservationStart(ZonedDateTime dateReservationStart) {
 
 		this.dateReservationStart = dateReservationStart;
-
 	}
 
 	public ZonedDateTime getDateReservationEnd() {
 
 		return dateReservationEnd;
-
 	}
 
 	public void setDateReservationEnd(ZonedDateTime dateReservationEnd) {
 
 		this.dateReservationEnd = dateReservationEnd;
-
 	}
 
 	public User getUser() {
 
 		return user;
-
 	}
 
 	public void setUser(User user) {
 
 		this.user = user;
-
 	}
 
 	public Book getBook() {
 
 		return book;
-
 	}
 
 	public void setBook(Book book) {
 
 		this.book = book;
-
 	}
 }

@@ -41,7 +41,6 @@ public class InitialData {
 
 		this.bookEditRepository = bookEditRepository;
 		this.userEditRepository = userEditRepository;
-
 	}
 
 	@PostConstruct
@@ -49,7 +48,6 @@ public class InitialData {
 
 		setBooks();
 		setUsers();
-
 	}
 
 	public void setBooks() {
@@ -75,10 +73,9 @@ public class InitialData {
 		book3.setYear(1999);
 		book3.setAvailable(true);
 
-		bookEditRepository.saveOrUpdateBook(book1);
-		bookEditRepository.saveOrUpdateBook(book2);
-		bookEditRepository.saveOrUpdateBook(book3);
-
+		bookEditRepository.saveOrUpdate(book1);
+		bookEditRepository.saveOrUpdate(book2);
+		bookEditRepository.saveOrUpdate(book3);
 	}
 
 	private void setUsers() {
@@ -95,8 +92,7 @@ public class InitialData {
 		user2.setTelephone("44-34993-456-456");
 		user2.setEmail("kasprzak@gmail.com");
 
-		userEditRepository.saveOrUpdateUser(user1);
-		userEditRepository.saveOrUpdateUser(user2);
-
+		userEditRepository.saveOrUpdate(user1);
+		userEditRepository.saveOrUpdate(user2);
 	}
 }

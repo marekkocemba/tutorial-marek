@@ -13,7 +13,6 @@
 package pl.unity.tutorial.marek.book.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.persistence.EntityManager;
 
@@ -35,16 +34,9 @@ public class BookRepository extends AbstractRepository<Book> {
 	public BookRepository(EntityManager entityManager) {
 
 		super(entityManager, Book.class);
-
 	}
 
-	public Optional<Book> findBookById(Long id) {
-
-		return findById(id);
-
-	}
-
-	public List<Book> getBookList(BookQueryForm bookQueryForm) {
+	public List<Book> getList(BookQueryForm bookQueryForm) {
 
 		Criteria criteria = getSession().createCriteria(Book.class);
 
@@ -72,7 +64,6 @@ public class BookRepository extends AbstractRepository<Book> {
 			criteria.add(Restrictions.eq("available", bookQueryForm.getAvailable()));
 		}
 
-		return (List<Book>) getListByCriteria(criteria);
-
+		return getListByCriteria(criteria);
 	}
 }

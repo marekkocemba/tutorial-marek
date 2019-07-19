@@ -34,7 +34,6 @@ import pl.unity.tutorial.marek.book.service.query.BookService;
 class BookController {
 
 	private final BookService bookService;
-
 	private final BookQueryValidator bookQueryValidator;
 
 	@Autowired
@@ -45,7 +44,6 @@ class BookController {
 
 		this.bookService = bookService;
 		this.bookQueryValidator = bookQueryValidator;
-
 	}
 
 	@GetMapping("/{id}")
@@ -54,7 +52,6 @@ class BookController {
 		model.addAttribute("book", bookService.getBookById(id));
 
 		return "book_details";
-
 	}
 
 	@GetMapping
@@ -71,6 +68,5 @@ class BookController {
 		model.addAttribute("bookList", bookService.getBookList(bookQueryForm));
 
 		return "book_list";
-
 	}
 }

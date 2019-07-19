@@ -30,6 +30,5 @@ public class ReservationMapper {
 			reservation.getUser() != null ? toUserDto(reservation.getUser()) : null,
 			reservation.getBook() != null ? toBookDto(reservation.getBook()) : null
 		);
-
 	}
 }

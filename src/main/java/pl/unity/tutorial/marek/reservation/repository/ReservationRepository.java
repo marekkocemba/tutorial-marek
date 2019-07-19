@@ -34,23 +34,20 @@ public class ReservationRepository extends AbstractRepository<Reservation> {
 	public ReservationRepository(EntityManager entityManager) {
 
 		super(entityManager, Reservation.class);
-
 	}
 
 	public Optional<Reservation> findReservationByBook(Book book) {
-
+//asercjre
 		Criteria criteria = getSession().
 			createCriteria(Reservation.class)
 			.add(Restrictions.eq("book", book))
 			.setMaxResults(1);
 
 		return findByCriteria(criteria);
-
 	}
 
 	public List<Reservation> getReservationList() {
 
 		return getList();
-
 	}
 }

@@ -38,33 +38,29 @@ public class UserService {
 		notNull(userRepository, "UserRepository should be not null");
 
 		this.userRepository = userRepository;
-
 	}
 
 	public UserDto getUserById(Long id) {
 
-		User user = userRepository.findUserById(id)
+		User user = userRepository.findById(id)
 			.orElseThrow(() -> new RuntimeException("No user found by id: " + id));
 
 		return toUserDto(user);
-
 	}
 
 	public List<UserDto> getUserList() {
 
-		return userRepository.getUserList()
+		return userRepository.getList()
 			.stream()
 			.map(UserMapper::toUserDto)
 			.collect(Collectors.toList());
-
 	}
 
 	public User getUserRandom() {
 
 		Random randomGenerator = new Random();
-		List<User> userList = userRepository.getUserList();
+		List<User> userList = userRepository.getList();
 
 		return userList.get(randomGenerator.nextInt(userList.size()));
-
 	}
 }

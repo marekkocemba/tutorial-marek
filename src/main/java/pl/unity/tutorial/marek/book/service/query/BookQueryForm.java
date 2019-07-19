@@ -20,86 +20,69 @@ import pl.unity.tutorial.marek.book.model.enums.BookCategoryEnum;
 public class BookQueryForm {
 
 	private String title;
-
 	private String author;
-
 	private List<BookCategoryEnum> bookCategoryList;
-
 	private Integer yearFrom;
-
 	private Integer yearTo;
-
 	private Boolean available;
 
 	public String getTitle() {
 
 		return title;
-
 	}
 
 	public void setTitle(String title) {
 
 		this.title = title;
-
 	}
 
 	public String getAuthor() {
 
 		return author;
-
 	}
 
 	public void setAuthor(String author) {
 
 		this.author = author;
-
 	}
 
 	public List<BookCategoryEnum> getBookCategoryList() {
 
 		return bookCategoryList;
-
 	}
 
 	public void setBookCategoryList(List<BookCategoryEnum> bookCategoryList) {
 
 		this.bookCategoryList = bookCategoryList;
-
 	}
 
 	public Integer getYearFrom() {
 
 		return yearFrom;
-
 	}
 
 	public void setYearFrom(Integer yearFrom) {
 
 		this.yearFrom = yearFrom;
-
 	}
 
 	public Integer getYearTo() {
 
 		return yearTo;
-
 	}
 
 	public void setYearTo(Integer yearTo) {
 
 		this.yearTo = yearTo;
-
 	}
 
 	public Boolean getAvailable() {
 
 		return available;
-
 	}
 
 	public void setAvailable(Boolean available) {
 
 		this.available = available;
-
 	}
 }

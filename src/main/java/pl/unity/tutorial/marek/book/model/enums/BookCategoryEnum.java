@@ -16,17 +16,15 @@ public enum BookCategoryEnum {
 
 	PROZA("proza"), DRAMAT("dramat"), OPOWIADANIE("opowiadanie"), PORADNIK("poradnik");
 
-	private String small;
+	private String minuscule;
 
-	BookCategoryEnum(String small) {
+	BookCategoryEnum(String minuscule) {
 
-		this.small = small;
-
+		this.minuscule = minuscule;
 	}
 
 	public String getSmall() {
 
-		return this.small;
-
+		return this.minuscule;
 	}
 }

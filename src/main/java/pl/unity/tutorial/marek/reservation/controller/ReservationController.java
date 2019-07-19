@@ -35,7 +35,6 @@ public class ReservationController {
 		notNull(reservationService, "ReservationService should be not null");
 
 		this.reservationService = reservationService;
-
 	}
 
 	@GetMapping("/book/available/false")
@@ -44,6 +43,5 @@ public class ReservationController {
 		model.addAttribute("reservationList", reservationService.getReservationsWhereBooksNotReturned());
 
 		return "reservation_list";
-
 	}
 }

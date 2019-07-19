@@ -28,20 +28,5 @@ public class BookEditRepository extends AbstractRepository<Book> {
 	public BookEditRepository(EntityManager entityManager) {
 
 		super(entityManager, Book.class);
-
-	}
-
-	public Book saveOrUpdateBook(Book book) {
-
-		saveOrUpdate(book);
-
-		return book;
-
-	}
-
-	public void deleteBook(Book book) {
-
-		delete(book);
-
 	}
 }

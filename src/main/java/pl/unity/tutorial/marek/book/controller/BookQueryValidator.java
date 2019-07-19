@@ -26,7 +26,6 @@ public class BookQueryValidator implements Validator {
 	public boolean supports(Class<?> clazz) {
 
 		return BookQueryForm.class.equals(clazz);
-
 	}
 
 	@Override
@@ -37,7 +36,6 @@ public class BookQueryValidator implements Validator {
 		if (isYearFromAfterYearTo(bookQuery)) {
 			errors.rejectValue("yearFrom", null, "should be before or equal to yearTo");
 		}
-
 	}
 
 	private boolean isYearFromAfterYearTo(BookQueryForm bookQuery) {
@@ -45,6 +43,5 @@ public class BookQueryValidator implements Validator {
 		return bookQuery.getYearFrom() != null &&
 			bookQuery.getYearTo() != null &&
 			bookQuery.getYearFrom() > bookQuery.getYearTo();
-
 	}
 }

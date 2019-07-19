@@ -37,7 +37,6 @@ public class ReservationEditController {
 		notNull(reservationEditService, "ReservationEditService should be not null");
 
 		this.reservationEditService = reservationEditService;
-
 	}
 
 	@PostMapping("/user/random")
@@ -55,7 +54,6 @@ public class ReservationEditController {
 			e.printStackTrace();
 
 			return "reservation_fail";
-
 		}
 	}
 
@@ -67,14 +65,12 @@ public class ReservationEditController {
 			reservationEditService.returnReservationByBook(bookId);
 
 			return "reservation_success";
-
 		}
 		catch (Exception e) {
 
 			e.printStackTrace();
 
 			return "reservation_fail";
-
 		}
 	}
 }

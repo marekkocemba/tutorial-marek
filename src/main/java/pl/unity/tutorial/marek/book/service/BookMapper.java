@@ -30,7 +30,6 @@ public class BookMapper {
 		book.setAvailable(bookDto.getAvailable());
 
 		return book;
-
 	}
 
 	public static Book toBook(BookForm bookform) {
@@ -44,12 +43,10 @@ public class BookMapper {
 		book.setAvailable(bookform.getAvailable());
 
 		return book;
-
 	}
 
 	public static BookDto toBookDto(Book book) {
 
 		return new BookDto(book.getId(), book.getTitle(), book.getAuthor(), book.getBookCategory(), book.getYear(), book.getAvailable());
-
 	}
 }

@@ -36,7 +36,6 @@ class UserController {
 		notNull(userService, "UserService should be not null");
 
 		this.userService = userService;
-
 	}
 
 	@GetMapping("/{id}")
@@ -45,7 +44,6 @@ class UserController {
 		model.addAttribute("user", userService.getUserById(id));
 
 		return "user_details";
-
 	}
 
 	@GetMapping
@@ -54,6 +52,5 @@ class UserController {
 		model.addAttribute("userList", userService.getUserList());
 
 		return "user_list";
-
 	}
 }

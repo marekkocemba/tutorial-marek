@@ -29,7 +29,6 @@ public class UserMapper {
 		user.setTelephone(userDto.getTelephone());
 
 		return user;
-
 	}
 
 	public static User toUser(UserForm userForm) {
@@ -42,12 +41,10 @@ public class UserMapper {
 		user.setTelephone(userForm.getTelephone());
 
 		return user;
-
 	}
 
 	public static UserDto toUserDto(User user) {
 
 		return new UserDto(user.getId(), user.getName(), user.getSurname(), user.getEmail(), user.getTelephone());
-
 	}
 }

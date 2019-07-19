@@ -35,7 +35,7 @@
                     	<form:select path="bookCategory">
                     		<option value="" selected>wybierz kategorie</option>
                     	   	<c:forEach items="<%=BookCategoryEnum.values()%>" var="bookCategoryItem">
-                          		<option value="${bookCategoryItem}">${bookCategoryItem.small}</option>
+                          		<option value="${bookCategoryItem}">${bookCategoryItem.minuscule}</option>
                           	</c:forEach>
                     	</form:select>
                     </td>

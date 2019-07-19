@@ -28,14 +28,5 @@ public class ReservationEditRepository extends AbstractRepository<Reservation> {
 	public ReservationEditRepository(EntityManager entityManager) {
 
 		super(entityManager, Reservation.class);
-
-	}
-
-	public Reservation saveOrUpdateReservation(Reservation reservation) {
-
-		saveOrUpdate(reservation);
-
-		return reservation;
-
 	}
 }

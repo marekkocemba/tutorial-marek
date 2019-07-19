@@ -28,19 +28,5 @@ public class UserEditRepository extends AbstractRepository<User> {
 	public UserEditRepository(EntityManager entityManager) {
 
 		super(entityManager, User.class);
-
-	}
-
-	public User saveOrUpdateUser(User user) {
-
-		saveOrUpdate(user);
-		return user;
-
-	}
-
-	public void deleteUser(User user) {
-
-		delete(user);
-
 	}
 }

@@ -29,38 +29,37 @@ import pl.unity.tutorial.marek.book.service.query.BookDto;
 public class BookEditService {
 
 	private final BookEditRepository bookEditRepository;
-
 	private final BookRepository bookRepository;
 
 	@Autowired
-	public BookEditService(BookEditRepository bookEditRepository, BookRepository bookRepository) {
+	BookEditService(BookEditRepository bookEditRepository, BookRepository bookRepository) {
 
 		notNull(bookEditRepository, "BookEditRepository should be not null");
 		notNull(bookRepository, "BookRepository should be not null");
 
 		this.bookEditRepository = bookEditRepository;
 		this.bookRepository = bookRepository;
-
 	}
 
 	public BookDto saveOrUpdateBook(BookForm bookForm) {
+
+		//asercje
+		notNull(bookForm, "bookForm must not be null");
 
 		if (bookForm.getAvailable() == null) {
 			bookForm.setAvailable(true);
 		}
 
-		Book persistedBook = bookEditRepository.saveOrUpdateBook(toBook(bookForm));
+		Book persistedBook = bookEditRepository.saveOrUpdate(toBook(bookForm));
 
 		return toBookDto(persistedBook);
-
 	}
 
 	public void deleteBook(Long id) {
 
-		Book book = bookRepository.findBookById(id)
+		Book book = bookRepository.findById(id)
 			.orElseThrow(() -> new RuntimeException("No book found by id: " + id));
 
-		bookEditRepository.deleteBook(book);
-
+		bookEditRepository.delete(book);
 	}
 }

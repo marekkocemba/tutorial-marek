@@ -31,7 +31,6 @@ public class ReservationService {
 	public ReservationService(ReservationRepository reservationRepository) {
 
 		this.reservationRepository = reservationRepository;
-
 	}
 
 	public List<ReservationDto> getReservationsWhereBooksNotReturned() {
@@ -41,5 +40,4 @@ public class ReservationService {
 			.map(ReservationMapper::toReservationDto)
 			.collect(Collectors.toList());
 	}
-
 }

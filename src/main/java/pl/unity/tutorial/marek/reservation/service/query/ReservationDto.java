@@ -21,13 +21,9 @@ import pl.unity.tutorial.marek.user.service.query.UserDto;
 public class ReservationDto {
 
 	private final Long id;
-
 	private final ZonedDateTime dateReservationStart;
-
 	private final ZonedDateTime dateReservationEnd;
-
 	private final UserDto user;
-
 	private final BookDto book;
 
 	public ReservationDto() {
@@ -37,7 +33,6 @@ public class ReservationDto {
 		this.dateReservationEnd = null;
 		this.user = null;
 		this.book = null;
-
 	}
 
 	public ReservationDto(Long id, ZonedDateTime dateReservationStart, ZonedDateTime dateReservationEnd, UserDto user, BookDto book) {
@@ -47,7 +42,6 @@ public class ReservationDto {
 		this.dateReservationEnd = dateReservationEnd;
 		this.user = user;
 		this.book = book;
-
 	}
 
 	public Long getId() {
@@ -58,24 +52,20 @@ public class ReservationDto {
 	public ZonedDateTime getDateReservationStart() {
 
 		return dateReservationStart;
-
 	}
 
 	public ZonedDateTime getDateReservationEnd() {
 
 		return dateReservationEnd;
-
 	}
 
 	public UserDto getUser() {
 
 		return user;
-
 	}
 
 	public BookDto getBook() {
 
 		return book;
-
 	}
 }

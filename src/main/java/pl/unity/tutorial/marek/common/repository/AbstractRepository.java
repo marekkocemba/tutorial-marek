@@ -31,65 +31,57 @@ import org.springframework.util.Assert;
 public abstract class AbstractRepository<T> implements Repository {
 
 	private final EntityManager entityManager;
-
 	private final Class<T> entityClass;
 
-	public AbstractRepository(EntityManager entityManager, Class<T> entityClass) {
+	protected AbstractRepository(EntityManager entityManager, Class<T> entityClass) {
 
 		Assert.notNull(entityClass, "entityClass is required");
 		Assert.notNull(entityManager, "entityManager is required");
 
 		this.entityManager = entityManager;
 		this.entityClass = entityClass;
-
 	}
 
-	protected void saveOrUpdate(T item) {
+	public T saveOrUpdate(T item) {
 
 		getSession().saveOrUpdate(item);
 
+		return item;
 	}
 
 	public void delete(T item) {
 
 		getSession().delete(item);
-
 	}
 
-	protected Optional<T> findById(Long id) {
+	public Optional<T> findById(Long id) {
 
 		Criteria queryByField = getSession().createCriteria(entityClass)
 			.add(Restrictions.eq("id", id))
 			.setMaxResults(1);
 
 		return Optional.ofNullable((T) queryByField.uniqueResult());
-
 	}
 
 	protected List<T> getListByCriteria(Criteria criteria) {
 
 		return criteria.list();
-
 	}
 
 	protected Optional<T> findByCriteria(Criteria criteria) {
 
 		return (Optional<T>) Optional.ofNullable(criteria.uniqueResult());
-
 	}
 
-	protected List<T> getList() {
+	public List<T> getList() {
 
 		Criteria queryAll = getSession().createCriteria(entityClass);
 
 		return queryAll.list();
-
 	}
 
 	protected Session getSession() {
 
 		return entityManager.unwrap(Session.class);
-
 	}
-
 }
