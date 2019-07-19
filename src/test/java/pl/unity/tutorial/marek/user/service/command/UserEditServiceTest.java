@@ -71,7 +71,7 @@ public class UserEditServiceTest {
 
 		//before
 
-		when(userEditRepository.saveOrUpdateUser(any(User.class))).thenReturn(user);
+		when(userEditRepository.saveOrUpdate(any(User.class))).thenReturn(user);
 
 		//when
 
@@ -92,7 +92,7 @@ public class UserEditServiceTest {
 
 		//before
 
-		when(userRepository.findUserById(1L)).thenReturn(Optional.of(user));
+		when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
 		//when
 
@@ -100,7 +100,7 @@ public class UserEditServiceTest {
 
 		//then
 
-		verify(userEditRepository, times(1)).deleteUser(user);
+		verify(userEditRepository, times(1)).delete(user);
 
 	}
 }

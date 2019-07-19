@@ -58,7 +58,7 @@ public class UserServiceTest {
 
 		//before
 
-		when(userRepository.findUserById(1L)).thenReturn(Optional.of(user));
+		when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
 		//when
 
@@ -79,7 +79,7 @@ public class UserServiceTest {
 
 		//before
 
-		when(userRepository.getUserList()).thenReturn(Arrays.asList(user));
+		when(userRepository.getList()).thenReturn(Arrays.asList(user));
 
 		//when
 
@@ -102,7 +102,7 @@ public class UserServiceTest {
 
 		//before
 
-		when(userRepository.getUserList()).thenReturn(Arrays.asList(user));
+		when(userRepository.getList()).thenReturn(Arrays.asList(user));
 
 		//when
 

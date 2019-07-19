@@ -85,9 +85,9 @@ public class ReservationEditServiceTest {
 		//before
 
 		when(userService.getUserRandom()).thenReturn(user);
-		when(bookRepository.findBookById((bookDto.getId()))).thenReturn(Optional.of(book));
-		when(bookEditRepository.saveOrUpdateBook(book)).thenReturn(book);
-		when(reservationEditRepository.saveOrUpdateReservation(any(Reservation.class))).thenReturn(reservation);
+		when(bookRepository.findById((bookDto.getId()))).thenReturn(Optional.of(book));
+		when(bookEditRepository.saveOrUpdate(book)).thenReturn(book);
+		when(reservationEditRepository.saveOrUpdate(any(Reservation.class))).thenReturn(reservation);
 
 		//when
 
@@ -107,10 +107,10 @@ public class ReservationEditServiceTest {
 
 		//before
 
-		when(bookRepository.findBookById(bookDto.getId())).thenReturn(Optional.of(book));
+		when(bookRepository.findById(bookDto.getId())).thenReturn(Optional.of(book));
 		when(reservationRepository.findReservationByBook(any(Book.class))).thenReturn(Optional.of(reservation));
-		when(bookEditRepository.saveOrUpdateBook(book)).thenReturn(book);
-		when(reservationEditRepository.saveOrUpdateReservation(reservation)).thenReturn(reservation);
+		when(bookEditRepository.saveOrUpdate(book)).thenReturn(book);
+		when(reservationEditRepository.saveOrUpdate(reservation)).thenReturn(reservation);
 
 		//when
 
@@ -118,8 +118,8 @@ public class ReservationEditServiceTest {
 
 		//then
 
-		verify(bookEditRepository, times(1)).saveOrUpdateBook(book);
-		verify(reservationEditRepository, times(1)).saveOrUpdateReservation(reservation);
+		verify(bookEditRepository, times(1)).saveOrUpdate(book);
+		verify(reservationEditRepository, times(1)).saveOrUpdate(reservation);
 
 	}
 }

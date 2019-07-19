@@ -58,7 +58,7 @@ public class BookServiceTest {
 
 		//before
 
-		when(bookRepository.findBookById(1L)).thenReturn(Optional.of(book));
+		when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
 
 		//when
 

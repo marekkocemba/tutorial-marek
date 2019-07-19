@@ -73,7 +73,7 @@ public class BookEditServiceTest {
 
 		//before
 
-		when(bookEditRepository.saveOrUpdateBook(any(Book.class))).thenReturn(book);
+		when(bookEditRepository.saveOrUpdate(any(Book.class))).thenReturn(book);
 
 		//when
 
@@ -93,7 +93,7 @@ public class BookEditServiceTest {
 
 		//before
 
-		when(bookRepository.findBookById(1L)).thenReturn(Optional.of(book));
+		when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
 
 		//when
 
@@ -101,6 +101,6 @@ public class BookEditServiceTest {
 
 		//then
 
-		verify(bookEditRepository, times(1)).deleteBook(book);
+		verify(bookEditRepository, times(1)).delete(book);
 	}
 }
