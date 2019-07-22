@@ -32,7 +32,7 @@ public class BookMapper {
 		return book;
 	}
 
-	public static Book toBook(BookForm bookform) {
+	public static Book toAvailableBook(BookForm bookform) {
 
 		Book book = new Book();
 		book.setId(bookform.getId());
@@ -40,6 +40,8 @@ public class BookMapper {
 		book.setAuthor(bookform.getAuthor());
 		book.setBookCategory(bookform.getBookCategory());
 		book.setYear(bookform.getYear());
+
+		book.setAvailable(true);
 
 		return book;
 	}

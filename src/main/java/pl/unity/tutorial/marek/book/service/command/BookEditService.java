@@ -13,7 +13,7 @@
 package pl.unity.tutorial.marek.book.service.command;
 
 import static org.springframework.util.Assert.notNull;
-import static pl.unity.tutorial.marek.book.service.BookMapper.toBook;
+import static pl.unity.tutorial.marek.book.service.BookMapper.toAvailableBook;
 import static pl.unity.tutorial.marek.book.service.BookMapper.toBookDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,9 +46,9 @@ public class BookEditService {
 		//asercje nna
 		notNull(bookForm, "bookForm must not be null");
 
-		Book book = toBook(bookForm);
+		Book book = toAvailableBook(bookForm);
 
-		book.setAvailable(true);
+
 		bookEditRepository.saveOrUpdate(book);
 
 		return toBookDto(book);
