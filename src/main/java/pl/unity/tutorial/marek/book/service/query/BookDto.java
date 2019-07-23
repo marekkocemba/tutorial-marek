@@ -24,16 +24,6 @@ public class BookDto {
 	private final Integer year;
 	private final Boolean available;
 
-	public BookDto() {
-
-		this.id = null;
-		this.title = null;
-		this.author = null;
-		this.bookCategory = null;
-		this.year = null;
-		this.available = null;
-	}
-
 	public BookDto(Long id, String title, String author, BookCategoryEnum bookCategory, Integer year, Boolean available) {
 
 		this.id = id;

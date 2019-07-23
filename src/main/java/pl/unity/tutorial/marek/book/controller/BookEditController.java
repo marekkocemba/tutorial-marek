@@ -28,7 +28,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.unity.tutorial.marek.book.service.command.BookEditService;
 import pl.unity.tutorial.marek.book.service.command.BookForm;
-import pl.unity.tutorial.marek.book.service.query.BookDto;
 import pl.unity.tutorial.marek.book.service.query.BookService;
 
 
@@ -52,7 +51,7 @@ class BookEditController {
 	@GetMapping("/form")
 	private String getNewBookForm(Model model) {
 
-		model.addAttribute("book", new BookDto());
+		model.addAttribute("book", new BookForm());
 
 		return "book_form";
 	}
