@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.unity.tutorial.marek.book.service.command.BookEditService;
 import pl.unity.tutorial.marek.book.service.command.BookForm;
@@ -49,20 +50,20 @@ class BookEditController {
 	}
 
 	@GetMapping("/form")
-	private String getNewBookForm(Model model) {
+	private String getNewBookForm(@RequestParam(value = "id", required = false) Long id, Model model) {
 
-		model.addAttribute("book", new BookForm());
-
-		return "book_form";
-	}
-
-	@GetMapping("/form/{id}")
-	private String getEditBookForm(@PathVariable("id") Long id, Model model) {
-
-		model.addAttribute("book", bookService.getBookById(id));
+		model.addAttribute("book", bookService.getBookByIdIfExistOrGetNew(id));
 
 		return "book_form";
 	}
+
+//	@ModelAttribute("book")
+//	private BookDto getBookForm(@RequestParam(value = "id", required = false) Optional<Long> bookId) {
+//
+//		return bookId
+//			.map(id-> (BookForm) bookService.getBookById(id))
+//			.orElseGet(() -> new BookForm());
+//	}
 
 	@PostMapping
 	private String saveOrUpdateBook(@Valid @ModelAttribute("book") BookForm bookForm, BindingResult result) {

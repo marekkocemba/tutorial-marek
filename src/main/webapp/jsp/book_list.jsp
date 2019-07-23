@@ -30,7 +30,7 @@
         	Kategoria:
             <form:select  path="bookCategoryList">
             	<c:forEach items="<%=BookCategoryEnum.values()%>" var="bookCategoryItem">
-            		<option value="${bookCategoryItem}">${bookCategoryItem.small}</option>
+            		<option value="${bookCategoryItem}">${bookCategoryItem.minuscule}</option>
             	</c:forEach>
             </form:select>
             <br>
@@ -42,7 +42,7 @@
 		<c:choose>
 			 <c:when test = "${not empty bookList}">
 			 	<c:forEach items="${bookList}" var="book">
-                	<a href="/books/${book.id}"> ${book.title} || ${book.author} || ${book.bookCategory.small} ||  ${book.year} </a> <br>
+                	<a href="/books/${book.id}"> ${book.title} || ${book.author} || ${book.bookCategory.minuscule} ||  ${book.year} </a> <br>
              	</c:forEach>
 			 </c:when>
 			 <c:otherwise>

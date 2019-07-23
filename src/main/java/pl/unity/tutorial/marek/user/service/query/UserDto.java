@@ -20,15 +20,6 @@ public class UserDto {
 	private final String telephone;
 	private final String email;
 
-	public UserDto() {
-
-		this.id = null;
-		this.name = null;
-		this.surname = null;
-		this.telephone = null;
-		this.email = null;
-	}
-
 	public UserDto(Long id, String name, String surname, String email, String telephone) {
 
 		this.id = id;

@@ -26,7 +26,8 @@
                 	<td>${user.telephone}</td>
                 </tr>
             </table>
-            <form method="GET" action="/users/form/${user.id}">
+            <form method="GET" action="/users/form">
+            	<input type="hidden" name="id" value="${user.id}">
             	<input type="submit" value="edytuj użytkownika" >
             </form>
             <form method="GET" action="/users/delete/${user.id}">

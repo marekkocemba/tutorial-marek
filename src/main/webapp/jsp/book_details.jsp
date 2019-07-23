@@ -26,7 +26,8 @@
                 	<td>${book.year}</td>
                 </tr>
             </table>
-            <form method="GET" action="/books/form/${book.id}">
+            <form method="GET" action="/books/form">
+            <input type="hidden" name="id" value="${book.id}">
             	<input type="submit" value="edytuj książkę" >
             </form>
             <form method="GET" action="/books/delete/${book.id}">

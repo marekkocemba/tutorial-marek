@@ -48,6 +48,14 @@ public class UserService {
 		return toUserDto(user);
 	}
 
+	public UserDto getUserByIdIfExistOrGetNew(Long id) {
+
+		User user = userRepository.findById(id)
+			.orElseGet(User::new);
+
+		return toUserDto(user);
+	}
+
 	public List<UserDto> getUserList() {
 
 		return userRepository.getList()

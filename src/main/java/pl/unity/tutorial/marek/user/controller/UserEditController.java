@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import pl.unity.tutorial.marek.user.service.command.UserEditService;
 import pl.unity.tutorial.marek.user.service.command.UserForm;
-import pl.unity.tutorial.marek.user.service.query.UserDto;
 import pl.unity.tutorial.marek.user.service.query.UserService;
 
 
@@ -51,17 +51,9 @@ class UserEditController {
 	}
 
 	@GetMapping("/form")
-	private String getNewUserForm(Model model) {
+	private String getNewUserForm(@RequestParam(value = "id", required = false) Long id, Model model) {
 
-		model.addAttribute("user", new UserDto());
-
-		return "user_form";
-	}
-
-	@GetMapping("/form/{id}")
-	private String getEditUserForm(@PathVariable("id") Long id, Model model) {
-
-		model.addAttribute("user", userService.getUserById(id));
+		model.addAttribute("user", userService.getUserByIdIfExistOrGetNew(id));
 
 		return "user_form";
 	}

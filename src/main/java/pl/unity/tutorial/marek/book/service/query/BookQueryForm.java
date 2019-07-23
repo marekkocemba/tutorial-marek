@@ -31,19 +31,9 @@ public class BookQueryForm {
 		return title;
 	}
 
-	public void setTitle(String title) {
-
-		this.title = title;
-	}
-
 	public String getAuthor() {
 
 		return author;
-	}
-
-	public void setAuthor(String author) {
-
-		this.author = author;
 	}
 
 	public List<BookCategoryEnum> getBookCategoryList() {
@@ -51,19 +41,9 @@ public class BookQueryForm {
 		return bookCategoryList;
 	}
 
-	public void setBookCategoryList(List<BookCategoryEnum> bookCategoryList) {
-
-		this.bookCategoryList = bookCategoryList;
-	}
-
 	public Integer getYearFrom() {
 
 		return yearFrom;
-	}
-
-	public void setYearFrom(Integer yearFrom) {
-
-		this.yearFrom = yearFrom;
 	}
 
 	public Integer getYearTo() {
@@ -71,18 +51,8 @@ public class BookQueryForm {
 		return yearTo;
 	}
 
-	public void setYearTo(Integer yearTo) {
-
-		this.yearTo = yearTo;
-	}
-
 	public Boolean getAvailable() {
 
 		return available;
-	}
-
-	public void setAvailable(Boolean available) {
-
-		this.available = available;
 	}
 }

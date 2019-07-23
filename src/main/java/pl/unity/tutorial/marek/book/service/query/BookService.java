@@ -46,6 +46,13 @@ public class BookService {
 		return toBookDto(book);
 	}
 
+	public BookDto getBookByIdIfExistOrGetNew(Long id) {
+
+		Book book = bookRepository.findById(id)
+			.orElseGet(Book::new);
+		return toBookDto(book);
+	}
+
 	public List<BookDto> getBookList(BookQueryForm bookQueryForm) {
 
 		return bookRepository.getList(bookQueryForm)

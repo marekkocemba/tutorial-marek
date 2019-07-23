@@ -23,7 +23,7 @@ public enum BookCategoryEnum {
 		this.minuscule = minuscule;
 	}
 
-	public String getSmall() {
+	public String getMinuscule() {
 
 		return this.minuscule;
 	}
