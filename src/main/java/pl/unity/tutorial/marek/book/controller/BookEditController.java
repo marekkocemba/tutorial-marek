@@ -36,6 +36,10 @@ import pl.unity.tutorial.marek.book.service.query.BookService;
 @RequestMapping("/books")
 class BookEditController {
 
+	public static final String BOOK_SUCCESS_VIEW = "book_success";
+	public static final String M_BOOK = "book";
+	public static final String M_BOOK_FORM = "book_form";
+
 	private final BookEditService bookEditService;
 	private final BookService bookService;
 
@@ -52,29 +56,21 @@ class BookEditController {
 	@GetMapping("/form")
 	private String getNewBookForm(@RequestParam(value = "id", required = false) Long id, Model model) {
 
-		model.addAttribute("book", bookService.getBookByIdIfExistOrGetNew(id));
+		model.addAttribute(M_BOOK, bookService.getBookByIdIfExistOrGetNew(id));
 
-		return "book_form";
+		return M_BOOK_FORM;
 	}
 
-//	@ModelAttribute("book")
-//	private BookDto getBookForm(@RequestParam(value = "id", required = false) Optional<Long> bookId) {
-//
-//		return bookId
-//			.map(id-> (BookForm) bookService.getBookById(id))
-//			.orElseGet(() -> new BookForm());
-//	}
-
 	@PostMapping
-	private String saveOrUpdateBook(@Valid @ModelAttribute("book") BookForm bookForm, BindingResult result) {
+	private String saveOrUpdateBook(@Valid @ModelAttribute(M_BOOK) BookForm bookForm, BindingResult result) {
 
 		if (result.hasErrors()) {
-			return "book_form";
+			return M_BOOK_FORM;
 		}
 
 		bookEditService.saveOrUpdateBook(bookForm);
 
-		return "book_success";
+		return BOOK_SUCCESS_VIEW;
 	}
 
 	//obejscie bo nie jest obsługiwana metoda DELETE powinno byc @DeleteMapping("/{id}")
@@ -83,6 +79,6 @@ class BookEditController {
 
 		bookEditService.deleteBook(id);
 
-		return "book_success";
+		return BOOK_SUCCESS_VIEW;
 	}
 }

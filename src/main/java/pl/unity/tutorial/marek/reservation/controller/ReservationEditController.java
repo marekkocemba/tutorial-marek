@@ -29,6 +29,9 @@ import pl.unity.tutorial.marek.reservation.service.query.ReservationDto;
 @RequestMapping("/reservations")
 class ReservationEditController {
 
+	public static final String M_RESERVATION = "reservation";
+	public static final String RESERVATION_SUCCESS_VIEW = "reservation_success";
+	public static final String RESERVATION_FAIL_VIEW = "reservation_fail";
 	private final ReservationEditService reservationEditService;
 
 	@Autowired
@@ -45,15 +48,15 @@ class ReservationEditController {
 		try {
 
 			ReservationDto reservationDto = reservationEditService.addReservationByBookAndRandomUser(bookId);
-			model.addAttribute("reservation", reservationDto);
+			model.addAttribute(M_RESERVATION, reservationDto);
 
-			return "reservation_success";
+			return RESERVATION_SUCCESS_VIEW;
 		}
 		catch (Exception e) {
 
 			e.printStackTrace();
 
-			return "reservation_fail";
+			return RESERVATION_FAIL_VIEW;
 		}
 	}
 

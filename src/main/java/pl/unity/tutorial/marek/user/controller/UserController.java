@@ -28,6 +28,11 @@ import pl.unity.tutorial.marek.user.service.query.UserService;
 @RequestMapping("/users")
 class UserController {
 
+	public static final String USER_LIST_VIEW = "user_list";
+	public static final String M_USER_LIST = "userList";
+	public static final String USER_DETAILS_VIEW = "user_details";
+	public static final String M_USER = "user";
+
 	private final UserService userService;
 
 	@Autowired
@@ -41,16 +46,16 @@ class UserController {
 	@GetMapping("/{id}")
 	private String getUserById(@PathVariable("id") Long id, Model model) {
 
-		model.addAttribute("user", userService.getUserById(id));
+		model.addAttribute(M_USER, userService.getUserById(id));
 
-		return "user_details";
+		return USER_DETAILS_VIEW;
 	}
 
 	@GetMapping
 	private String getUserList(Model model) {
 
-		model.addAttribute("userList", userService.getUserList());
+		model.addAttribute(M_USER_LIST, userService.getUserList());
 
-		return "user_list";
+		return USER_LIST_VIEW;
 	}
 }

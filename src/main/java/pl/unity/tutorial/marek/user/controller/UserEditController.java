@@ -36,6 +36,11 @@ import pl.unity.tutorial.marek.user.service.query.UserService;
 @RequestMapping("/users")
 class UserEditController {
 
+	public static final String P_ID = "id";
+	public static final String USER_SUCCESS_VIEW = "user_success";
+	public static final String USER_FORM_VIEW = "user_form";
+	public static final String M_USER = "user";
+	
 	private final UserEditService userEditService;
 	private final UserService userService;
 
@@ -53,28 +58,28 @@ class UserEditController {
 	@GetMapping("/form")
 	private String getNewUserForm(@RequestParam(value = "id", required = false) Long id, Model model) {
 
-		model.addAttribute("user", userService.getUserByIdIfExistOrGetNew(id));
+		model.addAttribute(M_USER, userService.getUserByIdIfExistOrGetNew(id));
 
-		return "user_form";
+		return USER_FORM_VIEW;
 	}
 
 	@PostMapping
-	private String addUser(@Valid @ModelAttribute("user") UserForm userForm, BindingResult result, Model model) {
+	private String addUser(@Valid @ModelAttribute(M_USER) UserForm userForm, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
-			return "user_form";
+			return USER_FORM_VIEW;
 		}
 		userEditService.saveOrUpdateUser(userForm);
 
-		return "user_success";
+		return USER_SUCCESS_VIEW;
 	}
 
 	//obejscie bo nie jest obsługiwana metoda DELETE powinno byc @DeleteMapping("/{id}")
 	@GetMapping("/delete/{id}")
-	private String deleteBook(@PathVariable("id") Long id) {
+	private String deleteBook(@PathVariable(P_ID) Long id) {
 
 		userEditService.deleteUser(id);
 
-		return "user_success";
+		return USER_SUCCESS_VIEW;
 	}
 }

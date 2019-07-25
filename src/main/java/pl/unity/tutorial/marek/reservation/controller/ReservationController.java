@@ -27,6 +27,9 @@ import pl.unity.tutorial.marek.reservation.service.query.ReservationService;
 @RequestMapping("/reservations")
 class ReservationController {
 
+	public static final String RESERVATION_LIST_VIEW = "reservation_list";
+	public static final String M_RESERVATION_LIST = "reservationList";
+
 	private final ReservationService reservationService;
 
 	@Autowired
@@ -40,8 +43,8 @@ class ReservationController {
 	@GetMapping("/book/available/false")
 	private String getReservationsWhereBooksNotReturned(Model model) {
 
-		model.addAttribute("reservationList", reservationService.getReservationsWhereBooksNotReturned());
+		model.addAttribute(M_RESERVATION_LIST, reservationService.getReservationsWhereBooksNotReturned());
 
-		return "reservation_list";
+		return RESERVATION_LIST_VIEW;
 	}
 }
