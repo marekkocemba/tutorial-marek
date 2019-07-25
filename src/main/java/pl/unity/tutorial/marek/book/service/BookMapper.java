@@ -12,14 +12,17 @@
 
 package pl.unity.tutorial.marek.book.service;
 
+import org.springframework.stereotype.Component;
+
+import pl.unity.tutorial.marek.book.model.Book;
 import pl.unity.tutorial.marek.book.service.command.BookForm;
 import pl.unity.tutorial.marek.book.service.query.BookDto;
-import pl.unity.tutorial.marek.book.model.Book;
 
 
+@Component
 public class BookMapper {
 
-	public static Book toBook(BookDto bookDto) {
+	public Book toBook(BookDto bookDto) {
 
 		Book book = new Book();
 		book.setId(bookDto.getId());
@@ -32,7 +35,7 @@ public class BookMapper {
 		return book;
 	}
 
-	public static Book toAvailableBook(BookForm bookform) {
+	public Book toAvailableBook(BookForm bookform) {
 
 		Book book = new Book();
 		book.setId(bookform.getId());
@@ -46,7 +49,7 @@ public class BookMapper {
 		return book;
 	}
 
-	public static BookDto toBookDto(Book book) {
+	public BookDto toBookDto(Book book) {
 
 		return new BookDto(book.getId(), book.getTitle(), book.getAuthor(), book.getBookCategory(), book.getYear(), book.getAvailable());
 	}

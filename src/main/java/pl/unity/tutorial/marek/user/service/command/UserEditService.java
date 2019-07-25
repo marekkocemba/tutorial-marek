@@ -13,8 +13,6 @@
 package pl.unity.tutorial.marek.user.service.command;
 
 import static org.springframework.util.Assert.notNull;
-import static pl.unity.tutorial.marek.user.service.UserMapper.toUser;
-import static pl.unity.tutorial.marek.user.service.UserMapper.toUserDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +20,7 @@ import org.springframework.stereotype.Service;
 import pl.unity.tutorial.marek.user.model.User;
 import pl.unity.tutorial.marek.user.repository.UserEditRepository;
 import pl.unity.tutorial.marek.user.repository.UserRepository;
+import pl.unity.tutorial.marek.user.service.UserMapper;
 import pl.unity.tutorial.marek.user.service.query.UserDto;
 
 
@@ -30,23 +29,26 @@ public class UserEditService {
 
 	private final UserEditRepository userEditRepository;
 	private final UserRepository userRepository;
+	private final UserMapper userMapper;
 
 	@Autowired
-	private UserEditService(UserEditRepository userEditRepository, UserRepository userRepository) {
+	private UserEditService(UserEditRepository userEditRepository, UserRepository userRepository, UserMapper userMapper) {
 
 		notNull(userEditRepository, "UserEditRepository should be not null");
 		notNull(userRepository, "UserRepository should be not null");
+		notNull(userMapper, "userMapper should be not null");
 
 		this.userRepository = userRepository;
 		this.userEditRepository = userEditRepository;
+		this.userMapper = userMapper;
 
 	}
 
 	public UserDto saveOrUpdateUser(UserForm userForm) {
 
-		User persistedUser = userEditRepository.saveOrUpdate(toUser(userForm));
+		User persistedUser = userEditRepository.saveOrUpdate(userMapper.toUser(userForm));
 
-		return toUserDto(persistedUser);
+		return userMapper.toUserDto(persistedUser);
 
 	}
 

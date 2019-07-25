@@ -13,8 +13,6 @@
 package pl.unity.tutorial.marek.book.service.command;
 
 import static org.springframework.util.Assert.notNull;
-import static pl.unity.tutorial.marek.book.service.BookMapper.toAvailableBook;
-import static pl.unity.tutorial.marek.book.service.BookMapper.toBookDto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +20,7 @@ import org.springframework.stereotype.Service;
 import pl.unity.tutorial.marek.book.model.Book;
 import pl.unity.tutorial.marek.book.repository.BookEditRepository;
 import pl.unity.tutorial.marek.book.repository.BookRepository;
+import pl.unity.tutorial.marek.book.service.BookMapper;
 import pl.unity.tutorial.marek.book.service.query.BookDto;
 
 
@@ -30,28 +29,30 @@ public class BookEditService {
 
 	private final BookEditRepository bookEditRepository;
 	private final BookRepository bookRepository;
+	private final BookMapper bookMapper;
 
 	@Autowired
-	private BookEditService(BookEditRepository bookEditRepository, BookRepository bookRepository) {
+	private BookEditService(BookEditRepository bookEditRepository, BookRepository bookRepository, BookMapper bookMapper) {
 
 		notNull(bookEditRepository, "BookEditRepository should be not null");
 		notNull(bookRepository, "BookRepository should be not null");
+		notNull(bookMapper, "BookMapper should be not null");
 
 		this.bookEditRepository = bookEditRepository;
 		this.bookRepository = bookRepository;
+		this.bookMapper = bookMapper;
 	}
 
 	public BookDto saveOrUpdateBook(BookForm bookForm) {
 
-		//asercje nna
 		notNull(bookForm, "bookForm must not be null");
 
-		Book book = toAvailableBook(bookForm);
+		Book book = bookMapper.toAvailableBook(bookForm);
 
 
 		bookEditRepository.saveOrUpdate(book);
 
-		return toBookDto(book);
+		return bookMapper.toBookDto(book);
 	}
 
 	public void deleteBook(Long id) {

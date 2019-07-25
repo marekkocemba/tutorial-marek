@@ -18,8 +18,6 @@
              Brak użytkowników w bazie
              </c:otherwise>
          </c:choose>
-         <form method="GET" action="/users/form">
-         	<input type="submit" value="dodaj użytkownika" >
-         </form>
+         <a href="/users/form"> Dodaj użytkownika </a>
     </body>
 </html>

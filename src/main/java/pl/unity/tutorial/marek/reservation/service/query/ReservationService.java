@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.reservation.service.query;
 
+import static org.springframework.util.Assert.notNull;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,18 +28,24 @@ import pl.unity.tutorial.marek.reservation.service.ReservationMapper;
 public class ReservationService {
 
 	private final ReservationRepository reservationRepository;
+	private final ReservationMapper reservationMapper;
 
 	@Autowired
-	private ReservationService(ReservationRepository reservationRepository) {
+	private ReservationService(ReservationRepository reservationRepository, ReservationMapper reservationMapper) {
+
+		notNull(reservationRepository, "reservationRepository must not be null");
+		notNull(reservationMapper, "reservationMapper must not be null");
 
 		this.reservationRepository = reservationRepository;
+		this.reservationMapper = reservationMapper;
+
 	}
 
 	public List<ReservationDto> getReservationsWhereBooksNotReturned() {
 
 		return reservationRepository.getReservationList()
 			.stream()
-			.map(ReservationMapper::toReservationDto)
+			.map(reservationMapper::toReservationDto)
 			.collect(Collectors.toList());
 	}
 }

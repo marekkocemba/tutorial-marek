@@ -13,7 +13,6 @@
 package pl.unity.tutorial.marek.user.service.query;
 
 import static org.springframework.util.Assert.notNull;
-import static pl.unity.tutorial.marek.user.service.UserMapper.toUserDto;
 
 import java.util.List;
 import java.util.Random;
@@ -31,13 +30,16 @@ import pl.unity.tutorial.marek.user.service.UserMapper;
 public class UserService {
 
 	private final UserRepository userRepository;
+	private final UserMapper userMapper;
 
 	@Autowired
-	private UserService(UserRepository userRepository) {
+	private UserService(UserRepository userRepository, UserMapper userMapper) {
 
 		notNull(userRepository, "UserRepository should be not null");
+		notNull(userMapper, "userMapper should be not null");
 
 		this.userRepository = userRepository;
+		this.userMapper = userMapper;
 	}
 
 	public UserDto getUserById(Long id) {
@@ -45,7 +47,7 @@ public class UserService {
 		User user = userRepository.findById(id)
 			.orElseThrow(() -> new RuntimeException("No user found by id: " + id));
 
-		return toUserDto(user);
+		return userMapper.toUserDto(user);
 	}
 
 	public UserDto getUserByIdIfExistOrGetNew(Long id) {
@@ -53,14 +55,14 @@ public class UserService {
 		User user = userRepository.findById(id)
 			.orElseGet(User::new);
 
-		return toUserDto(user);
+		return userMapper.toUserDto(user);
 	}
 
 	public List<UserDto> getUserList() {
 
 		return userRepository.getList()
 			.stream()
-			.map(UserMapper::toUserDto)
+			.map(userMapper::toUserDto)
 			.collect(Collectors.toList());
 	}
 

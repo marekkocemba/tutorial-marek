@@ -40,7 +40,7 @@ class UserEditController {
 	public static final String USER_SUCCESS_VIEW = "user_success";
 	public static final String USER_FORM_VIEW = "user_form";
 	public static final String M_USER = "user";
-	
+
 	private final UserEditService userEditService;
 	private final UserService userService;
 

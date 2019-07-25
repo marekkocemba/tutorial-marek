@@ -13,7 +13,6 @@
 package pl.unity.tutorial.marek.reservation.service.command;
 
 import static org.springframework.util.Assert.notNull;
-import static pl.unity.tutorial.marek.reservation.service.ReservationMapper.toReservationDto;
 
 import java.time.ZonedDateTime;
 
@@ -26,6 +25,7 @@ import pl.unity.tutorial.marek.book.repository.BookRepository;
 import pl.unity.tutorial.marek.reservation.model.Reservation;
 import pl.unity.tutorial.marek.reservation.repository.ReservationEditRepository;
 import pl.unity.tutorial.marek.reservation.repository.ReservationRepository;
+import pl.unity.tutorial.marek.reservation.service.ReservationMapper;
 import pl.unity.tutorial.marek.reservation.service.query.ReservationDto;
 import pl.unity.tutorial.marek.user.model.User;
 import pl.unity.tutorial.marek.user.service.query.UserService;
@@ -39,23 +39,25 @@ public class ReservationEditService {
 	private final UserService userService;
 	private final BookRepository bookRepository;
 	private final BookEditRepository bookEditRepository;
+	private final ReservationMapper reservationMapper;
 
 	@Autowired
-	private ReservationEditService(ReservationEditRepository reservationEditRepository,
-		ReservationRepository reservationRepository, UserService userService,
-		BookRepository bookRepository, BookEditRepository bookEditRepository) {
+	private ReservationEditService(ReservationEditRepository reservationEditRepository, ReservationRepository reservationRepository, UserService userService,
+		BookRepository bookRepository, BookEditRepository bookEditRepository, ReservationMapper reservationMapper) {
 
 		notNull(reservationEditRepository, "ReservationEditRepository should be not null");
 		notNull(reservationRepository, "ReservationRepository should be not null");
 		notNull(reservationEditRepository, "SessionFactory should be not null");
 		notNull(bookRepository, "BookRepository should be not null");
 		notNull(bookEditRepository, "BookEditRepository should be not null");
+		notNull(reservationMapper, "ReservationMapper should be not null");
 
 		this.reservationEditRepository = reservationEditRepository;
 		this.reservationRepository = reservationRepository;
 		this.userService = userService;
 		this.bookRepository = bookRepository;
 		this.bookEditRepository = bookEditRepository;
+		this.reservationMapper = reservationMapper;
 	}
 
 	public ReservationDto addReservationByBookAndRandomUser(Long bookId) {
@@ -72,7 +74,7 @@ public class ReservationEditService {
 		Reservation persistedReservation = reservationEditRepository.saveOrUpdate(
 			new Reservation(randomUser, book, ZonedDateTime.now()));
 
-		return toReservationDto(persistedReservation);
+		return reservationMapper.toReservationDto(persistedReservation);
 	}
 
 	public void returnReservationByBook(Long bookId) {

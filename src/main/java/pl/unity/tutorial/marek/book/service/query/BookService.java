@@ -13,7 +13,6 @@
 package pl.unity.tutorial.marek.book.service.query;
 
 import static org.springframework.util.Assert.notNull;
-import static pl.unity.tutorial.marek.book.service.BookMapper.toBookDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,34 +29,37 @@ import pl.unity.tutorial.marek.book.service.BookMapper;
 public class BookService {
 
 	private final BookRepository bookRepository;
+	private final BookMapper bookMapper;
 
 	@Autowired
-	private BookService(BookRepository bookRepository) {
+	private BookService(BookRepository bookRepository, BookMapper bookMapper) {
 
 		notNull(bookRepository, "bookRepository must not be null");
+		notNull(bookMapper, "bookMapper must not be null");
 
 		this.bookRepository = bookRepository;
+		this.bookMapper = bookMapper;
 	}
 
 	public BookDto getBookById(Long id) {
 
 		Book book = bookRepository.findById(id)
 			.orElseThrow(() -> new RuntimeException("No Book found by given id: " + id));
-		return toBookDto(book);
+		return bookMapper.toBookDto(book);
 	}
 
 	public BookDto getBookByIdIfExistOrGetNew(Long id) {
 
 		Book book = bookRepository.findById(id)
 			.orElseGet(Book::new);
-		return toBookDto(book);
+		return bookMapper.toBookDto(book);
 	}
 
 	public List<BookDto> getBookList(BookQueryForm bookQueryForm) {
 
 		return bookRepository.getList(bookQueryForm)
 			.stream()
-			.map(BookMapper::toBookDto)
+			.map(bookMapper::toBookDto)
 			.collect(Collectors.toList());
 	}
 }

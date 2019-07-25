@@ -12,14 +12,16 @@
 
 package pl.unity.tutorial.marek.user.service;
 
+import org.springframework.stereotype.Component;
+
 import pl.unity.tutorial.marek.user.model.User;
 import pl.unity.tutorial.marek.user.service.command.UserForm;
 import pl.unity.tutorial.marek.user.service.query.UserDto;
 
-
+@Component
 public class UserMapper {
 
-	public static User toUser(UserDto userDto) {
+	public User toUser(UserDto userDto) {
 
 		User user = new User();
 		user.setId(userDto.getId());
@@ -31,7 +33,7 @@ public class UserMapper {
 		return user;
 	}
 
-	public static User toUser(UserForm userForm) {
+	public User toUser(UserForm userForm) {
 
 		User user = new User();
 		user.setId(userForm.getId());
@@ -43,7 +45,7 @@ public class UserMapper {
 		return user;
 	}
 
-	public static UserDto toUserDto(User user) {
+	public UserDto toUserDto(User user) {
 
 		return new UserDto(user.getId(), user.getName(), user.getSurname(), user.getEmail(), user.getTelephone());
 	}

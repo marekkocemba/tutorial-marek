@@ -49,8 +49,6 @@
              Brak książek w bazie
              </c:otherwise>
          </c:choose>
-         <form method="GET" action="/books/form">
-         	<input type="submit" value="dodaj książkę" >
-         </form>
+         <a href="/books/form"> Dodaj książkę </a>
     </body>
 </html>
