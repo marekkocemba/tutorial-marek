@@ -47,12 +47,40 @@ public class BookEditService {
 
 		notNull(bookForm, "bookForm must not be null");
 
-		Book book = bookMapper.toAvailableBook(bookForm);
+		Book book;
 
+		if (bookForm.getId() != null) {
+			book = updateBook(bookForm);
+		}
+		else {
+			book = createBook(bookForm);
+		}
+
+		return bookMapper.toBookDto(book);
+	}
+
+	private Book updateBook(BookForm bookForm) {
+
+		Book book = bookEditRepository.findById(bookForm.getId())
+			.orElseThrow(() -> new RuntimeException("No book found by given id: " + bookForm.getId()));
+
+		book.setTitle(bookForm.getTitle());
+		book.setAuthor(bookForm.getAuthor());
+		book.setBookCategory(bookForm.getBookCategory());
+		book.setYear(bookForm.getYear());
 
 		bookEditRepository.saveOrUpdate(book);
 
-		return bookMapper.toBookDto(book);
+		return book;
+	}
+
+	private Book createBook(BookForm bookForm) {
+
+		Book book = bookMapper.toAvailableBook(bookForm);
+
+		bookEditRepository.saveOrUpdate(book);
+
+		return book;
 	}
 
 	public void deleteBook(Long id) {

@@ -22,29 +22,14 @@ import pl.unity.tutorial.marek.book.service.query.BookDto;
 @Component
 public class BookMapper {
 
-	public Book toBook(BookDto bookDto) {
-
-		Book book = new Book();
-		book.setId(bookDto.getId());
-		book.setTitle(bookDto.getTitle());
-		book.setAuthor(bookDto.getAuthor());
-		book.setBookCategory(bookDto.getBookCategory());
-		book.setYear(bookDto.getYear());
-		book.setAvailable(bookDto.getAvailable());
-
-		return book;
-	}
-
 	public Book toAvailableBook(BookForm bookform) {
 
-		Book book = new Book();
-		book.setId(bookform.getId());
-		book.setTitle(bookform.getTitle());
-		book.setAuthor(bookform.getAuthor());
-		book.setBookCategory(bookform.getBookCategory());
-		book.setYear(bookform.getYear());
-
-		book.setAvailable(true);
+		Book book = new Book(
+			bookform.getTitle(),
+			bookform.getAuthor(),
+			bookform.getBookCategory(),
+			bookform.getYear(),
+			true);
 
 		return book;
 	}

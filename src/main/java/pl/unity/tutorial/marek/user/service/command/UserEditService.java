@@ -46,10 +46,43 @@ public class UserEditService {
 
 	public UserDto saveOrUpdateUser(UserForm userForm) {
 
-		User persistedUser = userEditRepository.saveOrUpdate(userMapper.toUser(userForm));
+		notNull(userForm, "userForm must not be null");
 
-		return userMapper.toUserDto(persistedUser);
+		User user;
 
+		if (userForm.getId() != null) {
+			user = updateUser(userForm);
+		}
+		else {
+			user = createUser(userForm);
+		}
+
+		return userMapper.toUserDto(user);
+
+	}
+
+	private User updateUser(UserForm userForm) {
+
+		User user = userEditRepository.findById(userForm.getId())
+			.orElseThrow(() -> new RuntimeException("No user found by given id: " + userForm.getId()));
+
+		user.setName(userForm.getName());
+		user.setSurname(userForm.getSurname());
+		user.setEmail(userForm.getEmail());
+		user.setTelephone(userForm.getTelephone());
+
+		userEditRepository.saveOrUpdate(user);
+
+		return user;
+	}
+
+	private User createUser(UserForm userForm) {
+
+		User user = userMapper.toUser(userForm);
+
+		userEditRepository.saveOrUpdate(user);
+
+		return user;
 	}
 
 	public void deleteUser(Long id) {

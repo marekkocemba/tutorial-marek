@@ -12,6 +12,8 @@
 
 package pl.unity.tutorial.marek.book.model;
 
+import static org.springframework.util.Assert.notNull;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Column;
@@ -41,6 +43,21 @@ public class Book {
 	private BookCategoryEnum bookCategory;
 	private Integer year;
 	private Boolean available;
+
+	public Book() {
+
+	}
+
+	public Book(String title, String author, BookCategoryEnum bookCategory, Integer year, boolean available) {
+
+		notNull(title, "title must not be null");
+
+		this.title = title;
+		this.author = author;
+		this.bookCategory = bookCategory;
+		this.year = year;
+		this.available = available;
+	}
 
 	public Long getId() {
 
