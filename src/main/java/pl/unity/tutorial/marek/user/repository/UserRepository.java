@@ -24,6 +24,7 @@ import pl.unity.tutorial.marek.user.model.User;
 @Repository
 public class UserRepository extends AbstractRepository<User> {
 
+	
 	@Autowired
 	public UserRepository(EntityManager entityManager) {
 
